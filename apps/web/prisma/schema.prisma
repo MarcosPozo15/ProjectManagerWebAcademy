@@ -1,0 +1,277 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum UserRole {
+  GUEST
+  USER
+  EDITOR
+  ADMIN
+}
+
+enum LessonDifficulty {
+  BEGINNER
+  INTERMEDIATE
+  ADVANCED
+}
+
+enum QuestionType {
+  MULTIPLE_CHOICE
+  TRUE_FALSE
+  FILL_IN
+}
+
+model User {
+  id             String    @id @default(cuid())
+  email          String    @unique
+  name           String?
+  role           UserRole  @default(USER)
+  timezone       String?   @default("Europe/Madrid")
+  onboardingData Json?
+  createdAt      DateTime  @default(now())
+  updatedAt      DateTime  @updatedAt
+
+  quizAttempts      QuizAttempt[]
+  progress          Progress[]
+  notes             Note[]
+  projectSubmissions ProjectSubmission[]
+  snippets          PlaygroundSnippet[]
+  events            Event[]
+
+  @@index([role])
+  @@index([createdAt])
+}
+
+model LearningPath {
+  id          String   @id @default(cuid())
+  slug        String   @unique
+  title       String
+  description String
+  order       Int      @default(0)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  modules   Module[]
+  progress  Progress[]
+
+  @@index([order])
+}
+
+model Module {
+  id            String   @id @default(cuid())
+  learningPathId String
+  slug          String
+  title         String
+  description   String
+  order         Int      @default(0)
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  learningPath LearningPath @relation(fields: [learningPathId], references: [id], onDelete: Cascade)
+  lessons      Lesson[]
+  quizzes      Quiz[]
+  projects     Project[]
+  progress     Progress[]
+
+  @@unique([learningPathId, slug])
+  @@index([learningPathId, order])
+}
+
+model Lesson {
+  id          String           @id @default(cuid())
+  moduleId    String
+  slug        String
+  title       String
+  mdxContent  String
+  durationMin Int              @default(10)
+  difficulty  LessonDifficulty @default(BEGINNER)
+  tags        String[]
+  order       Int              @default(0)
+  createdAt   DateTime         @default(now())
+  updatedAt   DateTime         @updatedAt
+
+  module     Module   @relation(fields: [moduleId], references: [id], onDelete: Cascade)
+  notes      Note[]
+  progress   Progress[]
+
+  @@unique([moduleId, slug])
+  @@index([moduleId, order])
+  @@index([difficulty])
+}
+
+model Quiz {
+  id        String   @id @default(cuid())
+  moduleId  String
+  slug      String
+  title     String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  module     Module        @relation(fields: [moduleId], references: [id], onDelete: Cascade)
+  questions  Question[]
+  attempts   QuizAttempt[]
+
+  @@unique([moduleId, slug])
+  @@index([moduleId])
+}
+
+model Question {
+  id        String       @id @default(cuid())
+  quizId    String
+  type      QuestionType
+  prompt    String
+  options   String[]
+  answer    String
+  explanation String
+  topic     String
+  order     Int          @default(0)
+  createdAt DateTime     @default(now())
+  updatedAt DateTime     @updatedAt
+
+  quiz Quiz @relation(fields: [quizId], references: [id], onDelete: Cascade)
+
+  @@index([quizId, order])
+  @@index([topic])
+}
+
+model QuizAttempt {
+  id        String   @id @default(cuid())
+  userId    String
+  quizId    String
+  answers   Json
+  score     Int      @default(0)
+  maxScore  Int      @default(0)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  quiz Quiz @relation(fields: [quizId], references: [id], onDelete: Cascade)
+
+  @@index([userId, createdAt])
+  @@index([quizId, createdAt])
+}
+
+model Project {
+  id          String   @id @default(cuid())
+  moduleId    String
+  slug        String
+  title       String
+  brief       String
+  checklist   String[]
+  rubric      String
+  pmLens      String
+  prdTemplate String
+  userStories String
+  order       Int      @default(0)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  module      Module              @relation(fields: [moduleId], references: [id], onDelete: Cascade)
+  submissions ProjectSubmission[]
+
+  @@unique([moduleId, slug])
+  @@index([moduleId, order])
+}
+
+model ProjectSubmission {
+  id         String   @id @default(cuid())
+  userId     String
+  projectId  String
+  deliverableUrl String?
+  deliverableText String?
+  selfEvaluation  Json?
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+
+  user    User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+  project Project @relation(fields: [projectId], references: [id], onDelete: Cascade)
+
+  @@index([userId, createdAt])
+  @@index([projectId, createdAt])
+}
+
+model Progress {
+  id            String   @id @default(cuid())
+  userId        String
+  learningPathId String?
+  moduleId      String?
+  lessonId      String
+  completedAt   DateTime?
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  user         User          @relation(fields: [userId], references: [id], onDelete: Cascade)
+  learningPath LearningPath? @relation(fields: [learningPathId], references: [id], onDelete: Cascade)
+  module       Module?       @relation(fields: [moduleId], references: [id], onDelete: Cascade)
+  lesson       Lesson        @relation(fields: [lessonId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, lessonId])
+  @@index([userId, completedAt])
+}
+
+model Note {
+  id        String   @id @default(cuid())
+  userId    String
+  lessonId  String
+  content   String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  lesson Lesson @relation(fields: [lessonId], references: [id], onDelete: Cascade)
+
+  @@index([userId, updatedAt])
+  @@index([lessonId])
+}
+
+model GlossaryTerm {
+  id          String   @id @default(cuid())
+  slug        String   @unique
+  term        String
+  definition  String
+  tags        String[]
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@index([term])
+}
+
+model Event {
+  id        String   @id @default(cuid())
+  userId    String?
+  name      String
+  properties Json?
+  createdAt DateTime @default(now())
+
+  user User? @relation(fields: [userId], references: [id], onDelete: SetNull)
+
+  @@index([name, createdAt])
+  @@index([userId, createdAt])
+}
+
+model FeatureFlag {
+  id        String   @id @default(cuid())
+  key       String   @unique
+  enabled   Boolean  @default(false)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model PlaygroundSnippet {
+  id        String   @id @default(cuid())
+  userId    String
+  title     String
+  language  String
+  code      String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId, updatedAt])
+}

@@ -1,0 +1,6 @@
+{
+  "/(dashboard)/dashboard/page": "app/(dashboard)/dashboard/page.js",
+  "/(dashboard)/learning/[pathSlug]/[moduleSlug]/[lessonSlug]/page": "app/(dashboard)/learning/[pathSlug]/[moduleSlug]/[lessonSlug]/page.js",
+  "/(dashboard)/learning/[pathSlug]/[moduleSlug]/page": "app/(dashboard)/learning/[pathSlug]/[moduleSlug]/page.js",
+  "/(dashboard)/learning/page": "app/(dashboard)/learning/page.js"
+}

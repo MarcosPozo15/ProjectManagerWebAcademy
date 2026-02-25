@@ -2,26 +2,22 @@
   "name": "pm-web-academy",
   "version": "0.1.0",
   "private": true,
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
-    "lint": "eslint"
-  },
-  "dependencies": {
-    "next": "16.1.6",
-    "react": "19.2.3",
-    "react-dom": "19.2.3"
-  },
-  "devDependencies": {
-    "@tailwindcss/postcss": "^4",
-    "@types/node": "^20",
-    "@types/react": "^19",
-    "@types/react-dom": "^19",
-    "babel-plugin-react-compiler": "1.0.0",
-    "eslint": "^9",
-    "eslint-config-next": "16.1.6",
-    "tailwindcss": "^4",
-    "typescript": "^5"
+    "dev": "npm run dev -w @pm-web-academy/web",
+    "build": "npm run build -w @pm-web-academy/web",
+    "start": "npm run start -w @pm-web-academy/web",
+    "lint": "npm run lint -w @pm-web-academy/web",
+    "format": "npm run format -w @pm-web-academy/web",
+    "format:check": "npm run format:check -w @pm-web-academy/web",
+    "test": "npm run test -w @pm-web-academy/web",
+    "test:e2e": "npm run test:e2e -w @pm-web-academy/web",
+    "db:generate": "npm run db:generate -w @pm-web-academy/web",
+    "db:migrate": "npm run db:migrate -w @pm-web-academy/web",
+    "db:seed": "npm run db:seed -w @pm-web-academy/web",
+    "db:studio": "npm run db:studio -w @pm-web-academy/web"
   }
 }
