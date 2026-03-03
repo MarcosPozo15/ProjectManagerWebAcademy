@@ -1171,11 +1171,11 @@ const schema = __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$z
 function LoginPage() {
     _s();
     const $ = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$compiler$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["c"])(22);
-    if ($[0] !== "f375a546d7eb3f9df9547636083c683da3f02948873634a90eab0b4e33ad550f") {
+    if ($[0] !== "62a77e67e675344396af89e9119b26fc7c6e44951b36adf92abfc3241deea3d6") {
         for(let $i = 0; $i < 22; $i += 1){
             $[$i] = Symbol.for("react.memo_cache_sentinel");
         }
-        $[0] = "f375a546d7eb3f9df9547636083c683da3f02948873634a90eab0b4e33ad550f";
+        $[0] = "62a77e67e675344396af89e9119b26fc7c6e44951b36adf92abfc3241deea3d6";
     }
     const router = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$navigation$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useRouter"])();
     let t0;
@@ -1202,11 +1202,13 @@ function LoginPage() {
                         "content-type": "application/json"
                     },
                     body: JSON.stringify({
-                        email: _values.email
+                        email: _values.email,
+                        password: _values.password
                     })
                 });
                 if (!res.ok) {
-                    __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$sonner$2f$dist$2f$index$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["toast"].error("No se pudo iniciar sesi\xF3n");
+                    const data = await res.json().catch(_LoginPageOnSubmitAnonymous);
+                    __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$sonner$2f$dist$2f$index$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["toast"].error(data?.error ?? "No se pudo iniciar sesi\xF3n");
                     return;
                 }
                 router.push("/dashboard");
@@ -1225,12 +1227,12 @@ function LoginPage() {
                 children: "Entrar"
             }, void 0, false, {
                 fileName: "[project]/apps/web/src/app/(auth)/login/page.tsx",
-                lineNumber: 70,
+                lineNumber: 74,
                 columnNumber: 22
             }, this)
         }, void 0, false, {
             fileName: "[project]/apps/web/src/app/(auth)/login/page.tsx",
-            lineNumber: 70,
+            lineNumber: 74,
             columnNumber: 10
         }, this);
         $[4] = t2;
@@ -1255,7 +1257,7 @@ function LoginPage() {
             render: _LoginPageFormFieldRender
         }, void 0, false, {
             fileName: "[project]/apps/web/src/app/(auth)/login/page.tsx",
-            lineNumber: 87,
+            lineNumber: 91,
             columnNumber: 10
         }, this);
         t5 = /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$apps$2f$web$2f$src$2f$components$2f$ui$2f$form$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["FormField"], {
@@ -1264,7 +1266,7 @@ function LoginPage() {
             render: _LoginPageFormFieldRender2
         }, void 0, false, {
             fileName: "[project]/apps/web/src/app/(auth)/login/page.tsx",
-            lineNumber: 88,
+            lineNumber: 92,
             columnNumber: 10
         }, this);
         $[8] = form.control;
@@ -1282,7 +1284,7 @@ function LoginPage() {
             children: "Entrar"
         }, void 0, false, {
             fileName: "[project]/apps/web/src/app/(auth)/login/page.tsx",
-            lineNumber: 98,
+            lineNumber: 102,
             columnNumber: 10
         }, this);
         $[11] = t6;
@@ -1301,7 +1303,7 @@ function LoginPage() {
             ]
         }, void 0, true, {
             fileName: "[project]/apps/web/src/app/(auth)/login/page.tsx",
-            lineNumber: 105,
+            lineNumber: 109,
             columnNumber: 10
         }, this);
         $[12] = t3;
@@ -1318,7 +1320,7 @@ function LoginPage() {
             children: t7
         }, void 0, false, {
             fileName: "[project]/apps/web/src/app/(auth)/login/page.tsx",
-            lineNumber: 115,
+            lineNumber: 119,
             columnNumber: 10
         }, this);
         $[16] = form;
@@ -1340,13 +1342,13 @@ function LoginPage() {
                     children: "Crear cuenta"
                 }, void 0, false, {
                     fileName: "[project]/apps/web/src/app/(auth)/login/page.tsx",
-                    lineNumber: 124,
+                    lineNumber: 128,
                     columnNumber: 91
                 }, this)
             ]
         }, void 0, true, {
             fileName: "[project]/apps/web/src/app/(auth)/login/page.tsx",
-            lineNumber: 124,
+            lineNumber: 128,
             columnNumber: 10
         }, this);
         $[19] = t9;
@@ -1366,13 +1368,13 @@ function LoginPage() {
                     ]
                 }, void 0, true, {
                     fileName: "[project]/apps/web/src/app/(auth)/login/page.tsx",
-                    lineNumber: 131,
+                    lineNumber: 135,
                     columnNumber: 21
                 }, this)
             ]
         }, void 0, true, {
             fileName: "[project]/apps/web/src/app/(auth)/login/page.tsx",
-            lineNumber: 131,
+            lineNumber: 135,
             columnNumber: 11
         }, this);
         $[20] = t8;
@@ -1397,7 +1399,7 @@ function _LoginPageFormFieldRender2(t0) {
                 children: "Contraseña"
             }, void 0, false, {
                 fileName: "[project]/apps/web/src/app/(auth)/login/page.tsx",
-                lineNumber: 143,
+                lineNumber: 147,
                 columnNumber: 20
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$apps$2f$web$2f$src$2f$components$2f$ui$2f$form$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["FormControl"], {
@@ -1407,23 +1409,23 @@ function _LoginPageFormFieldRender2(t0) {
                     ...field_0
                 }, void 0, false, {
                     fileName: "[project]/apps/web/src/app/(auth)/login/page.tsx",
-                    lineNumber: 143,
+                    lineNumber: 147,
                     columnNumber: 66
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/apps/web/src/app/(auth)/login/page.tsx",
-                lineNumber: 143,
+                lineNumber: 147,
                 columnNumber: 53
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$apps$2f$web$2f$src$2f$components$2f$ui$2f$form$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["FormMessage"], {}, void 0, false, {
                 fileName: "[project]/apps/web/src/app/(auth)/login/page.tsx",
-                lineNumber: 143,
+                lineNumber: 147,
                 columnNumber: 150
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/apps/web/src/app/(auth)/login/page.tsx",
-        lineNumber: 143,
+        lineNumber: 147,
         columnNumber: 10
     }, this);
 }
@@ -1435,7 +1437,7 @@ function _LoginPageFormFieldRender(t0) {
                 children: "Email"
             }, void 0, false, {
                 fileName: "[project]/apps/web/src/app/(auth)/login/page.tsx",
-                lineNumber: 149,
+                lineNumber: 153,
                 columnNumber: 20
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$apps$2f$web$2f$src$2f$components$2f$ui$2f$form$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["FormControl"], {
@@ -1445,25 +1447,28 @@ function _LoginPageFormFieldRender(t0) {
                     ...field
                 }, void 0, false, {
                     fileName: "[project]/apps/web/src/app/(auth)/login/page.tsx",
-                    lineNumber: 149,
+                    lineNumber: 153,
                     columnNumber: 61
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/apps/web/src/app/(auth)/login/page.tsx",
-                lineNumber: 149,
+                lineNumber: 153,
                 columnNumber: 48
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$apps$2f$web$2f$src$2f$components$2f$ui$2f$form$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["FormMessage"], {}, void 0, false, {
                 fileName: "[project]/apps/web/src/app/(auth)/login/page.tsx",
-                lineNumber: 149,
+                lineNumber: 153,
                 columnNumber: 129
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/apps/web/src/app/(auth)/login/page.tsx",
-        lineNumber: 149,
+        lineNumber: 153,
         columnNumber: 10
     }, this);
+}
+function _LoginPageOnSubmitAnonymous() {
+    return null;
 }
 var _c;
 __turbopack_context__.k.register(_c, "LoginPage");

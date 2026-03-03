@@ -99,6 +99,8 @@ async function GET() {
             name: true,
             role: true,
             timezone: true,
+            avatarUrl: true,
+            bio: true,
             createdAt: true
         }
     });
@@ -113,7 +115,9 @@ async function GET() {
 }
 const patchSchema = __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$zod$2f$v4$2f$classic$2f$external$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__$3c$export__$2a$__as__z$3e$__["z"].object({
     name: __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$zod$2f$v4$2f$classic$2f$external$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__$3c$export__$2a$__as__z$3e$__["z"].string().min(2).optional(),
-    timezone: __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$zod$2f$v4$2f$classic$2f$external$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__$3c$export__$2a$__as__z$3e$__["z"].string().min(2).optional()
+    timezone: __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$zod$2f$v4$2f$classic$2f$external$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__$3c$export__$2a$__as__z$3e$__["z"].string().min(2).optional(),
+    avatarUrl: __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$zod$2f$v4$2f$classic$2f$external$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__$3c$export__$2a$__as__z$3e$__["z"].string().url().optional().nullable(),
+    bio: __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$zod$2f$v4$2f$classic$2f$external$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__$3c$export__$2a$__as__z$3e$__["z"].string().max(2000).optional().nullable()
 });
 async function PATCH(req) {
     const email = (await (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$headers$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["cookies"])()).get("pmwa_email")?.value;
@@ -139,6 +143,12 @@ async function PATCH(req) {
             } : {},
             ...parsed.data.timezone ? {
                 timezone: parsed.data.timezone
+            } : {},
+            ...parsed.data.avatarUrl !== undefined ? {
+                avatarUrl: parsed.data.avatarUrl
+            } : {},
+            ...parsed.data.bio !== undefined ? {
+                bio: parsed.data.bio
             } : {}
         },
         select: {
@@ -146,6 +156,8 @@ async function PATCH(req) {
             name: true,
             role: true,
             timezone: true,
+            avatarUrl: true,
+            bio: true,
             createdAt: true
         }
     });

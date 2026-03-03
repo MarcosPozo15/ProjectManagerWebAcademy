@@ -14,6 +14,8 @@ import { toast } from "sonner";
 const schema = z.object({
   name: z.string().min(2),
   timezone: z.string().min(2),
+  avatarUrl: z.string().url().or(z.literal("")).optional(),
+  bio: z.string().max(2000).optional(),
 });
 
 type Values = z.infer<typeof schema>;
@@ -24,6 +26,8 @@ type MeResponse = {
     name: string | null;
     role: string;
     timezone: string | null;
+    avatarUrl: string | null;
+    bio: string | null;
     createdAt: string;
   };
 };
@@ -34,7 +38,7 @@ export default function ProfilePage() {
 
   const form = useForm<Values>({
     resolver: zodResolver(schema),
-    defaultValues: { name: "", timezone: "Europe/Madrid" },
+    defaultValues: { name: "", avatarUrl: "", bio: "", timezone: "" },
   });
 
   useEffect(() => {
@@ -46,7 +50,9 @@ export default function ProfilePage() {
       setRole(data.user.role);
       form.reset({
         name: data.user.name ?? "",
-        timezone: data.user.timezone ?? "Europe/Madrid",
+        timezone: data.user.timezone ?? "",
+        avatarUrl: data.user.avatarUrl ?? "",
+        bio: data.user.bio ?? "",
       });
     };
     void load();
@@ -56,7 +62,11 @@ export default function ProfilePage() {
     const res = await fetch("/api/me", {
       method: "PATCH",
       headers: { "content-type": "application/json" },
-      body: JSON.stringify(values),
+      body: JSON.stringify({
+        ...values,
+        avatarUrl: values.avatarUrl?.trim() ? values.avatarUrl.trim() : null,
+        bio: values.bio?.trim() ? values.bio.trim() : null,
+      }),
     });
 
     if (!res.ok) {
@@ -95,7 +105,7 @@ export default function ProfilePage() {
                   <FormItem>
                     <FormLabel>Nombre</FormLabel>
                     <FormControl>
-                      <Input autoComplete="name" {...field} />
+                      <Input autoComplete="name" {...field} value={field.value ?? ""} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -109,7 +119,35 @@ export default function ProfilePage() {
                   <FormItem>
                     <FormLabel>Zona horaria</FormLabel>
                     <FormControl>
-                      <Input placeholder="Europe/Madrid" {...field} />
+                      <Input placeholder="Europe/Madrid" {...field} value={field.value ?? ""} />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+
+              <FormField
+                control={form.control}
+                name="avatarUrl"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Avatar URL</FormLabel>
+                    <FormControl>
+                      <Input placeholder="https://..." {...field} value={field.value ?? ""} />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+
+              <FormField
+                control={form.control}
+                name="bio"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Bio</FormLabel>
+                    <FormControl>
+                      <Input placeholder="Sobre ti..." {...field} value={field.value ?? ""} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>

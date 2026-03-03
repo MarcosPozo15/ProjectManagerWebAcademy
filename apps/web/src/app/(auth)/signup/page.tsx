@@ -37,11 +37,12 @@ export default function SignupPage() {
     const res = await fetch("/api/auth/signup", {
       method: "POST",
       headers: { "content-type": "application/json" },
-      body: JSON.stringify({ name: _values.name, email: _values.email }),
+      body: JSON.stringify({ name: _values.name, email: _values.email, password: _values.password }),
     });
 
     if (!res.ok) {
-      toast.error("No se pudo crear la cuenta");
+      const data = (await res.json().catch(() => null)) as { error?: string } | null;
+      toast.error(data?.error ?? "No se pudo crear la cuenta");
       return;
     }
 

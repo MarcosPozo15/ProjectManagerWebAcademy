@@ -1023,16 +1023,18 @@ var _s = __turbopack_context__.k.signature();
 ;
 const schema = __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$zod$2f$v4$2f$classic$2f$external$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__$2a$__as__z$3e$__["z"].object({
     name: __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$zod$2f$v4$2f$classic$2f$external$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__$2a$__as__z$3e$__["z"].string().min(2),
-    timezone: __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$zod$2f$v4$2f$classic$2f$external$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__$2a$__as__z$3e$__["z"].string().min(2)
+    timezone: __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$zod$2f$v4$2f$classic$2f$external$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__$2a$__as__z$3e$__["z"].string().min(2),
+    avatarUrl: __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$zod$2f$v4$2f$classic$2f$external$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__$2a$__as__z$3e$__["z"].string().url().or(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$zod$2f$v4$2f$classic$2f$external$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__$2a$__as__z$3e$__["z"].literal("")).optional(),
+    bio: __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$zod$2f$v4$2f$classic$2f$external$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__$2a$__as__z$3e$__["z"].string().max(2000).optional()
 });
 function ProfilePage() {
     _s();
-    const $ = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$compiler$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["c"])(30);
-    if ($[0] !== "ef54af479f72769422859d2aa7ac515ba5be2d8b6624f580934f93a2a6e18995") {
-        for(let $i = 0; $i < 30; $i += 1){
+    const $ = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$compiler$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["c"])(34);
+    if ($[0] !== "742bced5a90019067a02b22a0ba5e050b97dbabc7718fa18b52a2a6474c418f1") {
+        for(let $i = 0; $i < 34; $i += 1){
             $[$i] = Symbol.for("react.memo_cache_sentinel");
         }
-        $[0] = "ef54af479f72769422859d2aa7ac515ba5be2d8b6624f580934f93a2a6e18995";
+        $[0] = "742bced5a90019067a02b22a0ba5e050b97dbabc7718fa18b52a2a6474c418f1";
     }
     const [email, setEmail] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(null);
     const [role, setRole] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(null);
@@ -1042,7 +1044,9 @@ function ProfilePage() {
             resolver: (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$hookform$2f$resolvers$2f$zod$2f$dist$2f$zod$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["zodResolver"])(schema),
             defaultValues: {
                 name: "",
-                timezone: "Europe/Madrid"
+                avatarUrl: "",
+                bio: "",
+                timezone: ""
             }
         };
         $[1] = t0;
@@ -1066,7 +1070,9 @@ function ProfilePage() {
                         setRole(data.user.role);
                         form.reset({
                             name: data.user.name ?? "",
-                            timezone: data.user.timezone ?? "Europe/Madrid"
+                            timezone: data.user.timezone ?? "",
+                            avatarUrl: data.user.avatarUrl ?? "",
+                            bio: data.user.bio ?? ""
                         });
                     }
                 }["ProfilePage[useEffect() > load]"];
@@ -1094,7 +1100,7 @@ function ProfilePage() {
                     children: "Perfil"
                 }, void 0, false, {
                     fileName: "[project]/apps/web/src/app/(dashboard)/profile/page.tsx",
-                    lineNumber: 86,
+                    lineNumber: 94,
                     columnNumber: 15
                 }, this),
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -1102,13 +1108,13 @@ function ProfilePage() {
                     children: "Edita tus datos básicos. El RBAC se controla por rol en la base de datos."
                 }, void 0, false, {
                     fileName: "[project]/apps/web/src/app/(dashboard)/profile/page.tsx",
-                    lineNumber: 86,
+                    lineNumber: 94,
                     columnNumber: 105
                 }, this)
             ]
         }, void 0, true, {
             fileName: "[project]/apps/web/src/app/(dashboard)/profile/page.tsx",
-            lineNumber: 86,
+            lineNumber: 94,
             columnNumber: 10
         }, this);
         $[5] = t3;
@@ -1123,12 +1129,12 @@ function ProfilePage() {
                 children: "Cuenta"
             }, void 0, false, {
                 fileName: "[project]/apps/web/src/app/(dashboard)/profile/page.tsx",
-                lineNumber: 93,
+                lineNumber: 101,
                 columnNumber: 22
             }, this)
         }, void 0, false, {
             fileName: "[project]/apps/web/src/app/(dashboard)/profile/page.tsx",
-            lineNumber: 93,
+            lineNumber: 101,
             columnNumber: 10
         }, this);
         $[6] = t4;
@@ -1145,7 +1151,7 @@ function ProfilePage() {
             ]
         }, void 0, true, {
             fileName: "[project]/apps/web/src/app/(dashboard)/profile/page.tsx",
-            lineNumber: 101,
+            lineNumber: 109,
             columnNumber: 10
         }, this);
         $[7] = t5;
@@ -1163,7 +1169,7 @@ function ProfilePage() {
             ]
         }, void 0, true, {
             fileName: "[project]/apps/web/src/app/(dashboard)/profile/page.tsx",
-            lineNumber: 110,
+            lineNumber: 118,
             columnNumber: 10
         }, this);
         $[9] = t7;
@@ -1181,7 +1187,7 @@ function ProfilePage() {
             ]
         }, void 0, true, {
             fileName: "[project]/apps/web/src/app/(dashboard)/profile/page.tsx",
-            lineNumber: 118,
+            lineNumber: 126,
             columnNumber: 10
         }, this);
         $[11] = t6;
@@ -1200,6 +1206,8 @@ function ProfilePage() {
     }
     let t11;
     let t12;
+    let t13;
+    let t14;
     if ($[16] !== form.control) {
         t11 = /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$apps$2f$web$2f$src$2f$components$2f$ui$2f$form$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["FormField"], {
             control: form.control,
@@ -1207,7 +1215,7 @@ function ProfilePage() {
             render: _ProfilePageFormFieldRender
         }, void 0, false, {
             fileName: "[project]/apps/web/src/app/(dashboard)/profile/page.tsx",
-            lineNumber: 136,
+            lineNumber: 146,
             columnNumber: 11
         }, this);
         t12 = /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$apps$2f$web$2f$src$2f$components$2f$ui$2f$form$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["FormField"], {
@@ -1216,71 +1224,97 @@ function ProfilePage() {
             render: _ProfilePageFormFieldRender2
         }, void 0, false, {
             fileName: "[project]/apps/web/src/app/(dashboard)/profile/page.tsx",
-            lineNumber: 137,
+            lineNumber: 147,
+            columnNumber: 11
+        }, this);
+        t13 = /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$apps$2f$web$2f$src$2f$components$2f$ui$2f$form$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["FormField"], {
+            control: form.control,
+            name: "avatarUrl",
+            render: _ProfilePageFormFieldRender3
+        }, void 0, false, {
+            fileName: "[project]/apps/web/src/app/(dashboard)/profile/page.tsx",
+            lineNumber: 148,
+            columnNumber: 11
+        }, this);
+        t14 = /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$apps$2f$web$2f$src$2f$components$2f$ui$2f$form$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["FormField"], {
+            control: form.control,
+            name: "bio",
+            render: _ProfilePageFormFieldRender4
+        }, void 0, false, {
+            fileName: "[project]/apps/web/src/app/(dashboard)/profile/page.tsx",
+            lineNumber: 149,
             columnNumber: 11
         }, this);
         $[16] = form.control;
         $[17] = t11;
         $[18] = t12;
+        $[19] = t13;
+        $[20] = t14;
     } else {
         t11 = $[17];
         t12 = $[18];
+        t13 = $[19];
+        t14 = $[20];
     }
-    let t13;
-    if ($[19] === Symbol.for("react.memo_cache_sentinel")) {
-        t13 = /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$apps$2f$web$2f$src$2f$components$2f$ui$2f$button$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Button"], {
+    let t15;
+    if ($[21] === Symbol.for("react.memo_cache_sentinel")) {
+        t15 = /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$apps$2f$web$2f$src$2f$components$2f$ui$2f$button$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Button"], {
             type: "submit",
             children: "Guardar"
         }, void 0, false, {
             fileName: "[project]/apps/web/src/app/(dashboard)/profile/page.tsx",
-            lineNumber: 147,
+            lineNumber: 163,
             columnNumber: 11
         }, this);
-        $[19] = t13;
+        $[21] = t15;
     } else {
-        t13 = $[19];
+        t15 = $[21];
     }
-    let t14;
-    if ($[20] !== t10 || $[21] !== t11 || $[22] !== t12) {
-        t14 = /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("form", {
+    let t16;
+    if ($[22] !== t10 || $[23] !== t11 || $[24] !== t12 || $[25] !== t13 || $[26] !== t14) {
+        t16 = /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("form", {
             onSubmit: t10,
             className: "space-y-4",
             children: [
                 t11,
                 t12,
-                t13
+                t13,
+                t14,
+                t15
             ]
         }, void 0, true, {
             fileName: "[project]/apps/web/src/app/(dashboard)/profile/page.tsx",
-            lineNumber: 154,
+            lineNumber: 170,
             columnNumber: 11
         }, this);
-        $[20] = t10;
-        $[21] = t11;
-        $[22] = t12;
-        $[23] = t14;
+        $[22] = t10;
+        $[23] = t11;
+        $[24] = t12;
+        $[25] = t13;
+        $[26] = t14;
+        $[27] = t16;
     } else {
-        t14 = $[23];
+        t16 = $[27];
     }
-    let t15;
-    if ($[24] !== form || $[25] !== t14) {
-        t15 = /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$apps$2f$web$2f$src$2f$components$2f$ui$2f$form$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Form"], {
+    let t17;
+    if ($[28] !== form || $[29] !== t16) {
+        t17 = /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$apps$2f$web$2f$src$2f$components$2f$ui$2f$form$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Form"], {
             ...form,
-            children: t14
+            children: t16
         }, void 0, false, {
             fileName: "[project]/apps/web/src/app/(dashboard)/profile/page.tsx",
-            lineNumber: 164,
+            lineNumber: 182,
             columnNumber: 11
         }, this);
-        $[24] = form;
-        $[25] = t14;
-        $[26] = t15;
+        $[28] = form;
+        $[29] = t16;
+        $[30] = t17;
     } else {
-        t15 = $[26];
+        t17 = $[30];
     }
-    let t16;
-    if ($[27] !== t15 || $[28] !== t9) {
-        t16 = /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+    let t18;
+    if ($[31] !== t17 || $[32] !== t9) {
+        t18 = /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
             className: "space-y-6",
             children: [
                 t3,
@@ -1291,32 +1325,32 @@ function ProfilePage() {
                             className: "space-y-6",
                             children: [
                                 t9,
-                                t15
+                                t17
                             ]
                         }, void 0, true, {
                             fileName: "[project]/apps/web/src/app/(dashboard)/profile/page.tsx",
-                            lineNumber: 173,
+                            lineNumber: 191,
                             columnNumber: 52
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/apps/web/src/app/(dashboard)/profile/page.tsx",
-                    lineNumber: 173,
+                    lineNumber: 191,
                     columnNumber: 42
                 }, this)
             ]
         }, void 0, true, {
             fileName: "[project]/apps/web/src/app/(dashboard)/profile/page.tsx",
-            lineNumber: 173,
+            lineNumber: 191,
             columnNumber: 11
         }, this);
-        $[27] = t15;
-        $[28] = t9;
-        $[29] = t16;
+        $[31] = t17;
+        $[32] = t9;
+        $[33] = t18;
     } else {
-        t16 = $[29];
+        t18 = $[33];
     }
-    return t16;
+    return t18;
 }
 _s(ProfilePage, "YnfaS5s7SptHwijr79pwoL+u/0s=", false, function() {
     return [
@@ -1324,6 +1358,82 @@ _s(ProfilePage, "YnfaS5s7SptHwijr79pwoL+u/0s=", false, function() {
     ];
 });
 _c = ProfilePage;
+function _ProfilePageFormFieldRender4(t0) {
+    const { field: field_2 } = t0;
+    return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$apps$2f$web$2f$src$2f$components$2f$ui$2f$form$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["FormItem"], {
+        children: [
+            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$apps$2f$web$2f$src$2f$components$2f$ui$2f$form$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["FormLabel"], {
+                children: "Bio"
+            }, void 0, false, {
+                fileName: "[project]/apps/web/src/app/(dashboard)/profile/page.tsx",
+                lineNumber: 204,
+                columnNumber: 20
+            }, this),
+            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$apps$2f$web$2f$src$2f$components$2f$ui$2f$form$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["FormControl"], {
+                children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$apps$2f$web$2f$src$2f$components$2f$ui$2f$input$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Input"], {
+                    placeholder: "Sobre ti...",
+                    ...field_2,
+                    value: field_2.value ?? ""
+                }, void 0, false, {
+                    fileName: "[project]/apps/web/src/app/(dashboard)/profile/page.tsx",
+                    lineNumber: 204,
+                    columnNumber: 59
+                }, this)
+            }, void 0, false, {
+                fileName: "[project]/apps/web/src/app/(dashboard)/profile/page.tsx",
+                lineNumber: 204,
+                columnNumber: 46
+            }, this),
+            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$apps$2f$web$2f$src$2f$components$2f$ui$2f$form$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["FormMessage"], {}, void 0, false, {
+                fileName: "[project]/apps/web/src/app/(dashboard)/profile/page.tsx",
+                lineNumber: 204,
+                columnNumber: 149
+            }, this)
+        ]
+    }, void 0, true, {
+        fileName: "[project]/apps/web/src/app/(dashboard)/profile/page.tsx",
+        lineNumber: 204,
+        columnNumber: 10
+    }, this);
+}
+function _ProfilePageFormFieldRender3(t0) {
+    const { field: field_1 } = t0;
+    return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$apps$2f$web$2f$src$2f$components$2f$ui$2f$form$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["FormItem"], {
+        children: [
+            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$apps$2f$web$2f$src$2f$components$2f$ui$2f$form$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["FormLabel"], {
+                children: "Avatar URL"
+            }, void 0, false, {
+                fileName: "[project]/apps/web/src/app/(dashboard)/profile/page.tsx",
+                lineNumber: 210,
+                columnNumber: 20
+            }, this),
+            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$apps$2f$web$2f$src$2f$components$2f$ui$2f$form$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["FormControl"], {
+                children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$apps$2f$web$2f$src$2f$components$2f$ui$2f$input$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Input"], {
+                    placeholder: "https://...",
+                    ...field_1,
+                    value: field_1.value ?? ""
+                }, void 0, false, {
+                    fileName: "[project]/apps/web/src/app/(dashboard)/profile/page.tsx",
+                    lineNumber: 210,
+                    columnNumber: 66
+                }, this)
+            }, void 0, false, {
+                fileName: "[project]/apps/web/src/app/(dashboard)/profile/page.tsx",
+                lineNumber: 210,
+                columnNumber: 53
+            }, this),
+            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$apps$2f$web$2f$src$2f$components$2f$ui$2f$form$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["FormMessage"], {}, void 0, false, {
+                fileName: "[project]/apps/web/src/app/(dashboard)/profile/page.tsx",
+                lineNumber: 210,
+                columnNumber: 156
+            }, this)
+        ]
+    }, void 0, true, {
+        fileName: "[project]/apps/web/src/app/(dashboard)/profile/page.tsx",
+        lineNumber: 210,
+        columnNumber: 10
+    }, this);
+}
 function _ProfilePageFormFieldRender2(t0) {
     const { field: field_0 } = t0;
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$apps$2f$web$2f$src$2f$components$2f$ui$2f$form$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["FormItem"], {
@@ -1332,32 +1442,33 @@ function _ProfilePageFormFieldRender2(t0) {
                 children: "Zona horaria"
             }, void 0, false, {
                 fileName: "[project]/apps/web/src/app/(dashboard)/profile/page.tsx",
-                lineNumber: 186,
+                lineNumber: 216,
                 columnNumber: 20
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$apps$2f$web$2f$src$2f$components$2f$ui$2f$form$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["FormControl"], {
                 children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$apps$2f$web$2f$src$2f$components$2f$ui$2f$input$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Input"], {
                     placeholder: "Europe/Madrid",
-                    ...field_0
+                    ...field_0,
+                    value: field_0.value ?? ""
                 }, void 0, false, {
                     fileName: "[project]/apps/web/src/app/(dashboard)/profile/page.tsx",
-                    lineNumber: 186,
+                    lineNumber: 216,
                     columnNumber: 68
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/apps/web/src/app/(dashboard)/profile/page.tsx",
-                lineNumber: 186,
+                lineNumber: 216,
                 columnNumber: 55
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$apps$2f$web$2f$src$2f$components$2f$ui$2f$form$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["FormMessage"], {}, void 0, false, {
                 fileName: "[project]/apps/web/src/app/(dashboard)/profile/page.tsx",
-                lineNumber: 186,
-                columnNumber: 132
+                lineNumber: 216,
+                columnNumber: 160
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/apps/web/src/app/(dashboard)/profile/page.tsx",
-        lineNumber: 186,
+        lineNumber: 216,
         columnNumber: 10
     }, this);
 }
@@ -1369,32 +1480,33 @@ function _ProfilePageFormFieldRender(t0) {
                 children: "Nombre"
             }, void 0, false, {
                 fileName: "[project]/apps/web/src/app/(dashboard)/profile/page.tsx",
-                lineNumber: 192,
+                lineNumber: 222,
                 columnNumber: 20
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$apps$2f$web$2f$src$2f$components$2f$ui$2f$form$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["FormControl"], {
                 children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$apps$2f$web$2f$src$2f$components$2f$ui$2f$input$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Input"], {
                     autoComplete: "name",
-                    ...field
+                    ...field,
+                    value: field.value ?? ""
                 }, void 0, false, {
                     fileName: "[project]/apps/web/src/app/(dashboard)/profile/page.tsx",
-                    lineNumber: 192,
+                    lineNumber: 222,
                     columnNumber: 62
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/apps/web/src/app/(dashboard)/profile/page.tsx",
-                lineNumber: 192,
+                lineNumber: 222,
                 columnNumber: 49
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$apps$2f$web$2f$src$2f$components$2f$ui$2f$form$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["FormMessage"], {}, void 0, false, {
                 fileName: "[project]/apps/web/src/app/(dashboard)/profile/page.tsx",
-                lineNumber: 192,
-                columnNumber: 116
+                lineNumber: 222,
+                columnNumber: 142
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/apps/web/src/app/(dashboard)/profile/page.tsx",
-        lineNumber: 192,
+        lineNumber: 222,
         columnNumber: 10
     }, this);
 }
@@ -1404,7 +1516,11 @@ async function _ProfilePageOnSubmit(values) {
         headers: {
             "content-type": "application/json"
         },
-        body: JSON.stringify(values)
+        body: JSON.stringify({
+            ...values,
+            avatarUrl: values.avatarUrl?.trim() ? values.avatarUrl.trim() : null,
+            bio: values.bio?.trim() ? values.bio.trim() : null
+        })
     });
     if (!res_0.ok) {
         __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$sonner$2f$dist$2f$index$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["toast"].error("No se pudo actualizar el perfil");

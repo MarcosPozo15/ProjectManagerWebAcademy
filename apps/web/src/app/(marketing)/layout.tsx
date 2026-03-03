@@ -1,9 +1,13 @@
 import Link from "next/link";
 import { ReactNode } from "react";
+import { cookies } from "next/headers";
 
 import { Button } from "@/components/ui/button";
+import { LogoutButton } from "@/components/auth/logout-button";
 
-export default function MarketingLayout({ children }: { children: ReactNode }) {
+export default async function MarketingLayout({ children }: { children: ReactNode }) {
+  const email = (await cookies()).get("pmwa_email")?.value;
+
   return (
     <div className="min-h-dvh">
       <header className="sticky top-0 z-50 border-b bg-background/80 backdrop-blur supports-[backdrop-filter]:bg-background/60">
@@ -22,12 +26,26 @@ export default function MarketingLayout({ children }: { children: ReactNode }) {
           </nav>
 
           <div className="flex items-center gap-2">
-            <Button variant="ghost" asChild>
-              <Link href="/login">Entrar</Link>
-            </Button>
-            <Button asChild className="hidden sm:inline-flex">
-              <Link href="/signup">Empieza gratis</Link>
-            </Button>
+            {email ? (
+              <>
+                <Button variant="ghost" asChild>
+                  <Link href="/dashboard">Dashboard</Link>
+                </Button>
+                <Button variant="ghost" asChild className="hidden sm:inline-flex">
+                  <Link href="/profile">Perfil</Link>
+                </Button>
+                <LogoutButton />
+              </>
+            ) : (
+              <>
+                <Button variant="ghost" asChild>
+                  <Link href="/login">Entrar</Link>
+                </Button>
+                <Button asChild className="hidden sm:inline-flex">
+                  <Link href="/signup">Empieza gratis</Link>
+                </Button>
+              </>
+            )}
           </div>
         </div>
       </header>

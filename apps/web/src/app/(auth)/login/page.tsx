@@ -30,11 +30,12 @@ export default function LoginPage() {
     const res = await fetch("/api/auth/login", {
       method: "POST",
       headers: { "content-type": "application/json" },
-      body: JSON.stringify({ email: _values.email }),
+      body: JSON.stringify({ email: _values.email, password: _values.password }),
     });
 
     if (!res.ok) {
-      toast.error("No se pudo iniciar sesión");
+      const data = (await res.json().catch(() => null)) as { error?: string } | null;
+      toast.error(data?.error ?? "No se pudo iniciar sesión");
       return;
     }
 

@@ -1,6 +1,16 @@
 {
+  "/(auth)/login/page": "app/(auth)/login/page.js",
   "/(dashboard)/dashboard/page": "app/(dashboard)/dashboard/page.js",
   "/(dashboard)/learning/[pathSlug]/[moduleSlug]/[lessonSlug]/page": "app/(dashboard)/learning/[pathSlug]/[moduleSlug]/[lessonSlug]/page.js",
-  "/(dashboard)/learning/[pathSlug]/[moduleSlug]/page": "app/(dashboard)/learning/[pathSlug]/[moduleSlug]/page.js",
-  "/(dashboard)/learning/page": "app/(dashboard)/learning/page.js"
+  "/(dashboard)/learning/page": "app/(dashboard)/learning/page.js",
+  "/(dashboard)/profile/page": "app/(dashboard)/profile/page.js",
+  "/(dashboard)/progress/page": "app/(dashboard)/progress/page.js",
+  "/(dashboard)/projects/[pathSlug]/[moduleSlug]/[projectSlug]/page": "app/(dashboard)/projects/[pathSlug]/[moduleSlug]/[projectSlug]/page.js",
+  "/(dashboard)/projects/page": "app/(dashboard)/projects/page.js",
+  "/(dashboard)/quizzes/[pathSlug]/[moduleSlug]/[quizSlug]/page": "app/(dashboard)/quizzes/[pathSlug]/[moduleSlug]/[quizSlug]/page.js",
+  "/(dashboard)/quizzes/page": "app/(dashboard)/quizzes/page.js",
+  "/(marketing)/page": "app/(marketing)/page.js",
+  "/api/auth/login/route": "app/api/auth/login/route.js",
+  "/api/auth/logout/route": "app/api/auth/logout/route.js",
+  "/api/me/route": "app/api/me/route.js"
 }

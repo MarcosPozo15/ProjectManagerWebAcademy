@@ -3,10 +3,12 @@ import { NextResponse } from "next/server";
 import { z } from "zod";
 
 import { prisma } from "@/infrastructure/db/prisma";
+import { hashPassword } from "@/infrastructure/auth/password";
 
 const schema = z.object({
   name: z.string().min(2),
   email: z.string().email(),
+  password: z.string().min(8),
 });
 
 export async function POST(req: Request) {
@@ -18,13 +20,18 @@ export async function POST(req: Request) {
 
   const email = parsed.data.email.toLowerCase();
 
-  await prisma.user.upsert({
-    where: { email },
-    update: { name: parsed.data.name },
-    create: {
+  const existing = await prisma.user.findUnique({ where: { email }, select: { id: true } });
+  if (existing) {
+    return NextResponse.json({ error: "Email already exists" }, { status: 409 });
+  }
+
+  const passwordHash = hashPassword(parsed.data.password);
+  await prisma.user.create({
+    data: {
       email,
       name: parsed.data.name,
-      role: email === "marcospoxo15@gmail.com" ? "ADMIN" : "USER",
+      passwordHash,
+      role: "USER",
     },
     select: { id: true },
   });
@@ -34,6 +41,7 @@ export async function POST(req: Request) {
     httpOnly: true,
     sameSite: "lax",
     path: "/",
+    maxAge: 60 * 60 * 24 * 30,
   });
 
   return NextResponse.json({ ok: true });

@@ -2,8 +2,10 @@ import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 
 import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { prisma } from "@/infrastructure/db/prisma";
+import Link from "next/link";
 
 export default async function AdminPage() {
   const email = (await cookies()).get("pmwa_email")?.value;
@@ -40,7 +42,12 @@ export default async function AdminPage() {
           <CardHeader>
             <CardTitle className="text-base">Usuarios</CardTitle>
           </CardHeader>
-          <CardContent className="text-sm text-muted-foreground">Gestión de roles y acceso.</CardContent>
+          <CardContent className="space-y-3 text-sm text-muted-foreground">
+            <div>Gestión de roles, estado y asignación profesor-alumno.</div>
+            <Button asChild size="sm" variant="outline">
+              <Link href="/admin/users">Abrir</Link>
+            </Button>
+          </CardContent>
         </Card>
         <Card>
           <CardHeader>

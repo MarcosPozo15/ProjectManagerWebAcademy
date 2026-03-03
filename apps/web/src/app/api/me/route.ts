@@ -10,7 +10,7 @@ export async function GET() {
 
   const user = await prisma.user.findUnique({
     where: { email },
-    select: { email: true, name: true, role: true, timezone: true, createdAt: true },
+    select: { email: true, name: true, role: true, timezone: true, avatarUrl: true, bio: true, createdAt: true },
   });
 
   if (!user) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
@@ -20,6 +20,8 @@ export async function GET() {
 const patchSchema = z.object({
   name: z.string().min(2).optional(),
   timezone: z.string().min(2).optional(),
+  avatarUrl: z.string().url().optional().nullable(),
+  bio: z.string().max(2000).optional().nullable(),
 });
 
 export async function PATCH(req: Request) {
@@ -35,8 +37,10 @@ export async function PATCH(req: Request) {
     data: {
       ...(parsed.data.name ? { name: parsed.data.name } : {}),
       ...(parsed.data.timezone ? { timezone: parsed.data.timezone } : {}),
+      ...(parsed.data.avatarUrl !== undefined ? { avatarUrl: parsed.data.avatarUrl } : {}),
+      ...(parsed.data.bio !== undefined ? { bio: parsed.data.bio } : {}),
     },
-    select: { email: true, name: true, role: true, timezone: true, createdAt: true },
+    select: { email: true, name: true, role: true, timezone: true, avatarUrl: true, bio: true, createdAt: true },
   });
 
   return NextResponse.json({ user });

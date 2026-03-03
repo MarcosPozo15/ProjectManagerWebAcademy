@@ -2,8 +2,19 @@ import Link from "next/link";
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { prisma } from "@/infrastructure/db/prisma";
+import { getSessionUser } from "@/infrastructure/auth/session";
 
 export default async function LearningIndexPage() {
+  const session = await getSessionUser();
+  const me = session ? await prisma.user.findUnique({ where: { email: session.email }, select: { id: true } }) : null;
+  const completed = me
+    ? await prisma.progress.findMany({
+        where: { userId: me.id, completedAt: { not: null } },
+        select: { lessonId: true },
+      })
+    : [];
+  const completedSet = new Set(completed.map((p) => p.lessonId));
+
   const paths = await prisma.learningPath.findMany({
     orderBy: { order: "asc" },
     include: {
@@ -12,7 +23,7 @@ export default async function LearningIndexPage() {
         include: {
           lessons: {
             orderBy: { order: "asc" },
-            select: { slug: true, title: true, order: true },
+            select: { id: true, slug: true, title: true, order: true },
           },
         },
       },
@@ -57,7 +68,10 @@ export default async function LearningIndexPage() {
                         href={`/learning/${p.slug}/${m.slug}/${l.slug}`}
                         className="rounded-md border px-3 py-2 text-sm hover:bg-muted"
                       >
-                        {l.order}. {l.title}
+                        {l.order}. {l.title}{" "}
+                        {completedSet.has(l.id) ? (
+                          <span className="ml-2 rounded bg-muted px-2 py-0.5 text-xs text-muted-foreground">OK</span>
+                        ) : null}
                       </Link>
                     ))}
                   </div>
