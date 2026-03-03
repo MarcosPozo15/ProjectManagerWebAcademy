@@ -14,6 +14,10 @@ type Question = {
   type: string;
 };
 
+type AttemptResponse =
+  | { ok: true; result: { score: number; maxScore: number; perQuestion: Array<{ id: string; ok: boolean; correct: string; explanation: string }> } }
+  | { error?: string };
+
 export function QuizRunner(props: { quizId: string; questions: Question[] }) {
   const [answers, setAnswers] = useState<Record<string, string>>({});
   const [submitting, setSubmitting] = useState(false);
@@ -42,9 +46,14 @@ export function QuizRunner(props: { quizId: string; questions: Question[] }) {
         body: JSON.stringify({ quizId: props.quizId, answers }),
       });
 
-      const data = (await res.json().catch(() => null)) as any;
+      const data = (await res.json().catch(() => null)) as AttemptResponse | null;
       if (!res.ok) {
-        toast.error(data?.error ?? "No se pudo enviar el intento");
+        toast.error((data && "error" in data ? data.error : null) ?? "No se pudo enviar el intento");
+        return;
+      }
+
+      if (!data || !("ok" in data)) {
+        toast.error("Respuesta inválida del servidor");
         return;
       }
 

@@ -4,6 +4,7 @@ import { z } from "zod";
 import { prisma } from "@/infrastructure/db/prisma";
 import { requireAdmin } from "@/infrastructure/auth/require-role";
 import { hashPassword } from "@/infrastructure/auth/password";
+import { Prisma } from "@prisma/client";
 
 const querySchema = z.object({
   q: z.string().optional(),
@@ -12,6 +13,8 @@ const querySchema = z.object({
   take: z.string().optional(),
   skip: z.string().optional(),
 });
+
+const roleSchema = z.enum(["USER", "PROFESSOR", "ADMIN", "EDITOR"]);
 
 export async function GET(req: Request) {
   const auth = await requireAdmin();
@@ -30,14 +33,17 @@ export async function GET(req: Request) {
   const role = parsed.data.role?.trim();
   const isActiveRaw = parsed.data.isActive?.trim();
 
-  const where: any = {};
+  const where: Prisma.UserWhereInput = {};
   if (q) {
     where.OR = [
       { email: { contains: q, mode: "insensitive" } },
       { name: { contains: q, mode: "insensitive" } },
     ];
   }
-  if (role && role !== "ALL") where.role = role;
+  if (role && role !== "ALL") {
+    const r = roleSchema.safeParse(role);
+    if (r.success) where.role = r.data;
+  }
   if (isActiveRaw === "true") where.isActive = true;
   if (isActiveRaw === "false") where.isActive = false;
 

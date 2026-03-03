@@ -4,6 +4,7 @@ import { z } from "zod";
 import { prisma } from "@/infrastructure/db/prisma";
 import { requireAdmin } from "@/infrastructure/auth/require-role";
 import { hashPassword } from "@/infrastructure/auth/password";
+import { Prisma } from "@prisma/client";
 
 const patchSchema = z.object({
   name: z.string().min(2).nullable().optional(),
@@ -25,7 +26,7 @@ export async function PATCH(req: Request, ctx: { params: Promise<{ id: string }>
     return NextResponse.json({ error: "Invalid payload" }, { status: 400 });
   }
 
-  const data: any = {};
+  const data: Prisma.UserUpdateInput = {};
   if (parsed.data.name !== undefined) data.name = parsed.data.name;
   if (parsed.data.role !== undefined) data.role = parsed.data.role;
   if (parsed.data.isActive !== undefined) data.isActive = parsed.data.isActive;

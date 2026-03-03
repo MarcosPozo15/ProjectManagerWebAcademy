@@ -48,5 +48,30 @@ export async function POST(req: Request, ctx: { params: Promise<{ submissionId: 
     select: { id: true },
   });
 
+  const student = await prisma.submission.findUnique({
+    where: { id: submissionId },
+    select: { studentId: true },
+  });
+
+  await prisma.event.create({
+    data: {
+      userId: me.id,
+      name: "feedback_given",
+      properties: { submissionId, status: parsed.data.status, score: parsed.data.score ?? null },
+    },
+    select: { id: true },
+  });
+
+  if (student) {
+    await prisma.event.create({
+      data: {
+        userId: student.studentId,
+        name: "feedback_received",
+        properties: { submissionId, status: parsed.data.status, score: parsed.data.score ?? null },
+      },
+      select: { id: true },
+    });
+  }
+
   return NextResponse.json({ ok: true }, { status: 201 });
 }

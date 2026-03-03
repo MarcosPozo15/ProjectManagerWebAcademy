@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { redirect } from "next/navigation";
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { prisma } from "@/infrastructure/db/prisma";
@@ -6,7 +7,8 @@ import { getSessionUser } from "@/infrastructure/auth/session";
 
 export default async function ProjectsIndexPage() {
   const session = await getSessionUser();
-  if (!session) return null;
+  if (!session) redirect("/login");
+  if (session.role !== "USER") redirect("/dashboard");
 
   const me = await prisma.user.findUnique({ where: { email: session.email }, select: { id: true } });
   if (!me) return null;

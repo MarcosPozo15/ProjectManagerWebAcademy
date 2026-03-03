@@ -10,6 +10,10 @@ export default async function DashboardLayout({ children }: { children: ReactNod
   const user = await getSessionUser();
   if (!user) redirect("/login");
 
+  const isAdmin = user.role === "ADMIN";
+  const isProfessor = user.role === "PROFESSOR";
+  const isUser = user.role === "USER";
+
   return (
     <div className="min-h-dvh">
       <header className="border-b">
@@ -18,27 +22,38 @@ export default async function DashboardLayout({ children }: { children: ReactNod
             Dashboard
           </Link>
           <nav className="flex items-center gap-2">
-            <Button variant="ghost" asChild className="hidden sm:inline-flex">
-              <Link href="/learning">Learning</Link>
-            </Button>
-            <Button variant="ghost" asChild className="hidden sm:inline-flex">
-              <Link href="/quizzes">Quizzes</Link>
-            </Button>
-            <Button variant="ghost" asChild className="hidden sm:inline-flex">
-              <Link href="/projects">Mini proyectos</Link>
-            </Button>
-            {user.role === "PROFESSOR" || user.role === "ADMIN" ? (
-              <Button variant="ghost" asChild className="hidden sm:inline-flex">
-                <Link href="/corrections">Correcciones</Link>
-              </Button>
+            {isUser ? (
+              <>
+                <Button variant="ghost" asChild className="hidden sm:inline-flex">
+                  <Link href="/learning">Learning</Link>
+                </Button>
+                <Button variant="ghost" asChild className="hidden sm:inline-flex">
+                  <Link href="/quizzes">Quizzes</Link>
+                </Button>
+                <Button variant="ghost" asChild className="hidden sm:inline-flex">
+                  <Link href="/projects">Mini proyectos</Link>
+                </Button>
+                <Button variant="ghost" asChild className="hidden sm:inline-flex">
+                  <Link href="/progress">Tu progreso</Link>
+                </Button>
+              </>
             ) : null}
-            <Button variant="ghost" asChild className="hidden sm:inline-flex">
-              <Link href="/progress">Tu progreso</Link>
-            </Button>
+
+            {isProfessor ? (
+              <>
+                <Button variant="ghost" asChild className="hidden sm:inline-flex">
+                  <Link href="/corrections">Correcciones</Link>
+                </Button>
+                <Button variant="ghost" asChild className="hidden sm:inline-flex">
+                  <Link href="/progress">Tu progreso</Link>
+                </Button>
+              </>
+            ) : null}
+
             <Button variant="ghost" asChild className="hidden sm:inline-flex">
               <Link href="/profile">Perfil</Link>
             </Button>
-            {user.role === "ADMIN" ? (
+            {isAdmin ? (
               <Button variant="ghost" asChild className="hidden sm:inline-flex">
                 <Link href="/admin">Admin</Link>
               </Button>

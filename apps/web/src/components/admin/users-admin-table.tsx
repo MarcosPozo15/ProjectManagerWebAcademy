@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -43,43 +43,41 @@ export function UsersAdminTable() {
     return params.toString();
   }, [q, role, isActive]);
 
-  const load = async () => {
+  const load = useCallback(async () => {
     setLoading(true);
     try {
       const res = await fetch(`/api/admin/users?${queryString}`);
       const data = (await res.json().catch(() => null)) as ListResponse | { error?: string } | null;
       if (!res.ok) {
-        toast.error((data as any)?.error ?? "No se pudieron cargar usuarios");
+        toast.error((data && "error" in data ? data.error : null) ?? "No se pudieron cargar usuarios");
         return;
       }
       setRows((data as ListResponse).users);
     } finally {
       setLoading(false);
     }
-  };
+  }, [queryString]);
 
-  const loadProfessors = async () => {
+  const loadProfessors = useCallback(async () => {
     const res = await fetch(`/api/admin/users?role=PROFESSOR&take=200`);
     const data = (await res.json().catch(() => null)) as ListResponse | { error?: string } | null;
     if (!res.ok) {
-      toast.error((data as any)?.error ?? "No se pudieron cargar profesores");
+      toast.error((data && "error" in data ? data.error : null) ?? "No se pudieron cargar profesores");
       return;
     }
     const list = (data as ListResponse).users.map((u) => ({ id: u.id, email: u.email, name: u.name }));
     setProfessors(list);
-  };
+  }, []);
 
   useEffect(() => {
     void load();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [queryString]);
+  }, [load]);
 
   useEffect(() => {
     void loadProfessors();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [loadProfessors]);
 
-  const patchUser = async (id: string, payload: any) => {
+  const patchUser = async (id: string, payload: Record<string, unknown>) => {
     const res = await fetch(`/api/admin/users/${id}`, {
       method: "PATCH",
       headers: { "content-type": "application/json" },

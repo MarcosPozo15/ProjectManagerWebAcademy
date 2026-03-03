@@ -180,6 +180,18 @@ async function POST(_req, ctx) {
             id: true
         }
     });
+    await __TURBOPACK__imported__module__$5b$project$5d2f$apps$2f$web$2f$src$2f$infrastructure$2f$db$2f$prisma$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["prisma"].event.create({
+        data: {
+            userId: user.id,
+            name: "lesson_completed",
+            properties: {
+                lessonId
+            }
+        },
+        select: {
+            id: true
+        }
+    });
     return __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$server$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["NextResponse"].json({
         ok: true
     }, {
@@ -222,6 +234,18 @@ async function DELETE(_req, ctx) {
             userId: user.id,
             lessonId,
             completedAt: null
+        },
+        select: {
+            id: true
+        }
+    });
+    await __TURBOPACK__imported__module__$5b$project$5d2f$apps$2f$web$2f$src$2f$infrastructure$2f$db$2f$prisma$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["prisma"].event.create({
+        data: {
+            userId: user.id,
+            name: "lesson_marked_pending",
+            properties: {
+                lessonId
+            }
         },
         select: {
             id: true

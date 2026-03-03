@@ -76,7 +76,7 @@ model TeacherStudentAssignment {
   teacher User @relation("TeacherAssignments", fields: [teacherId], references: [id], onDelete: Cascade)
   student User @relation("StudentAssignments", fields: [studentId], references: [id], onDelete: Cascade)
 
-  @@unique([teacherId, studentId])
+  @@unique([studentId])
   @@index([teacherId, createdAt])
   @@index([studentId, createdAt])
 }

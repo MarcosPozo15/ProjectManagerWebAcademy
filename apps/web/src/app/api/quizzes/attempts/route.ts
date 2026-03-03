@@ -52,5 +52,14 @@ export async function POST(req: Request) {
     select: { id: true },
   });
 
+  await prisma.event.create({
+    data: {
+      userId: user.id,
+      name: "quiz_attempt_submitted",
+      properties: { quizId: quiz.id, score, maxScore },
+    },
+    select: { id: true },
+  });
+
   return NextResponse.json({ ok: true, result: { score, maxScore, perQuestion } }, { status: 201 });
 }

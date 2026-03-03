@@ -234,12 +234,11 @@ async function POST(req) {
     }
     await __TURBOPACK__imported__module__$5b$project$5d2f$apps$2f$web$2f$src$2f$infrastructure$2f$db$2f$prisma$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["prisma"].teacherStudentAssignment.upsert({
         where: {
-            teacherId_studentId: {
-                teacherId: teacher.id,
-                studentId: student.id
-            }
+            studentId: student.id
         },
-        update: {},
+        update: {
+            teacherId: teacher.id
+        },
         create: {
             teacherId: teacher.id,
             studentId: student.id
@@ -269,7 +268,6 @@ async function DELETE(req) {
     }
     await __TURBOPACK__imported__module__$5b$project$5d2f$apps$2f$web$2f$src$2f$infrastructure$2f$db$2f$prisma$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["prisma"].teacherStudentAssignment.deleteMany({
         where: {
-            teacherId,
             studentId
         }
     });

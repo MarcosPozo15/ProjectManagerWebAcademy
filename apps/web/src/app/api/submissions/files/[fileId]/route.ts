@@ -40,8 +40,18 @@ export async function GET(_req: Request, ctx: { params: Promise<{ fileId: string
   if (!s) return NextResponse.json({ error: "File missing on disk" }, { status: 404 });
 
   const stream = createReadStream(absolute);
+  const body = new ReadableStream({
+    start(controller) {
+      stream.on("data", (chunk) => controller.enqueue(chunk));
+      stream.on("end", () => controller.close());
+      stream.on("error", (err) => controller.error(err));
+    },
+    cancel() {
+      stream.destroy();
+    },
+  });
 
-  return new NextResponse(stream as any, {
+  return new NextResponse(body, {
     headers: {
       "content-type": file.mimeType || "application/octet-stream",
       "content-disposition": `attachment; filename="${encodeURIComponent(file.originalName)}"`,

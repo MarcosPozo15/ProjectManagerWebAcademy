@@ -8,7 +8,7 @@ import { CorrectionsInbox } from "@/components/professor/corrections-inbox";
 export default async function CorrectionsPage() {
   const user = await getSessionUser();
   if (!user) redirect("/login");
-  if (user.role !== "PROFESSOR" && user.role !== "ADMIN") redirect("/dashboard");
+  if (user.role !== "PROFESSOR") redirect("/dashboard");
 
   return (
     <div className="space-y-6">

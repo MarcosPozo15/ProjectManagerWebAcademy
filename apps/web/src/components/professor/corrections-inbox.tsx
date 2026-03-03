@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
+import { useRouter } from "next/navigation";
 
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -25,6 +26,7 @@ type CorrectionRow = {
 type ListResponse = { submissions: CorrectionRow[] };
 
 export function CorrectionsInbox() {
+  const router = useRouter();
   const [rows, setRows] = useState<CorrectionRow[]>([]);
   const [loading, setLoading] = useState(false);
   const [selectedId, setSelectedId] = useState<string | null>(null);
@@ -40,7 +42,7 @@ export function CorrectionsInbox() {
       const res = await fetch("/api/corrections");
       const data = (await res.json().catch(() => null)) as ListResponse | { error?: string } | null;
       if (!res.ok) {
-        toast.error((data as any)?.error ?? "No se pudieron cargar correcciones");
+        toast.error((data && "error" in data ? data.error : null) ?? "No se pudieron cargar correcciones");
         return;
       }
       const list = (data as ListResponse).submissions;
@@ -70,7 +72,7 @@ export function CorrectionsInbox() {
       return;
     }
 
-    const payload: any = { status, comment: comment.trim() };
+    const payload: { status: string; comment: string; score?: number } = { status, comment: comment.trim() };
     if (score.trim()) payload.score = Number(score);
 
     const res = await fetch(`/api/corrections/${selected.id}`, {
@@ -87,6 +89,7 @@ export function CorrectionsInbox() {
 
     toast.success("Corrección guardada");
     void load();
+    router.refresh();
   };
 
   return (
@@ -111,6 +114,9 @@ export function CorrectionsInbox() {
                 <div className="font-medium">{r.exercise.title}</div>
                 <div className="text-xs text-muted-foreground">{r.student.email}</div>
                 <div className="text-xs text-muted-foreground">Estado: {r.status}</div>
+                {r.feedback[0]?.score != null ? (
+                  <div className="text-xs text-muted-foreground">Nota: {r.feedback[0].score}</div>
+                ) : null}
               </button>
             ))}
           </div>

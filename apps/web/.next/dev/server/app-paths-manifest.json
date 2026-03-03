@@ -1,5 +1,8 @@
 {
   "/(auth)/login/page": "app/(auth)/login/page.js",
+  "/(dashboard)/admin/page": "app/(dashboard)/admin/page.js",
+  "/(dashboard)/admin/users/page": "app/(dashboard)/admin/users/page.js",
+  "/(dashboard)/corrections/page": "app/(dashboard)/corrections/page.js",
   "/(dashboard)/dashboard/page": "app/(dashboard)/dashboard/page.js",
   "/(dashboard)/learning/[pathSlug]/[moduleSlug]/[lessonSlug]/page": "app/(dashboard)/learning/[pathSlug]/[moduleSlug]/[lessonSlug]/page.js",
   "/(dashboard)/learning/page": "app/(dashboard)/learning/page.js",
@@ -10,7 +13,15 @@
   "/(dashboard)/quizzes/[pathSlug]/[moduleSlug]/[quizSlug]/page": "app/(dashboard)/quizzes/[pathSlug]/[moduleSlug]/[quizSlug]/page.js",
   "/(dashboard)/quizzes/page": "app/(dashboard)/quizzes/page.js",
   "/(marketing)/page": "app/(marketing)/page.js",
+  "/api/admin/assignments/route": "app/api/admin/assignments/route.js",
+  "/api/admin/users/route": "app/api/admin/users/route.js",
   "/api/auth/login/route": "app/api/auth/login/route.js",
   "/api/auth/logout/route": "app/api/auth/logout/route.js",
-  "/api/me/route": "app/api/me/route.js"
+  "/api/corrections/[submissionId]/route": "app/api/corrections/[submissionId]/route.js",
+  "/api/corrections/route": "app/api/corrections/route.js",
+  "/api/me/route": "app/api/me/route.js",
+  "/api/progress/lessons/[lessonId]/route": "app/api/progress/lessons/[lessonId]/route.js",
+  "/api/projects/submissions/route": "app/api/projects/submissions/route.js",
+  "/api/submissions/files/[fileId]/route": "app/api/submissions/files/[fileId]/route.js",
+  "/api/submissions/route": "app/api/submissions/route.js"
 }

@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { redirect } from "next/navigation";
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { prisma } from "@/infrastructure/db/prisma";
@@ -12,7 +13,8 @@ export default async function ProjectPage({
   params: Promise<{ pathSlug: string; moduleSlug: string; projectSlug: string }>;
 }) {
   const session = await getSessionUser();
-  if (!session) return null;
+  if (!session) redirect("/login");
+  if (session.role !== "USER") redirect("/dashboard");
 
   const me = await prisma.user.findUnique({ where: { email: session.email }, select: { id: true } });
   if (!me) return null;

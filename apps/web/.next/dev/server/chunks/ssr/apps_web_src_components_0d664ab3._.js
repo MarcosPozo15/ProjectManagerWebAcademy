@@ -179,7 +179,11 @@ function QuizRunner(props) {
             });
             const data = await res.json().catch(()=>null);
             if (!res.ok) {
-                __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$sonner$2f$dist$2f$index$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["toast"].error(data?.error ?? "No se pudo enviar el intento");
+                __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$sonner$2f$dist$2f$index$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["toast"].error((data && "error" in data ? data.error : null) ?? "No se pudo enviar el intento");
+                return;
+            }
+            if (!data || !("ok" in data)) {
+                __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$sonner$2f$dist$2f$index$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["toast"].error("Respuesta inválida del servidor");
                 return;
             }
             setResult(data.result);
@@ -199,7 +203,7 @@ function QuizRunner(props) {
                 ]
             }, void 0, true, {
                 fileName: "[project]/apps/web/src/components/quizzes/quiz-runner.tsx",
-                lineNumber: 60,
+                lineNumber: 69,
                 columnNumber: 7
             }, this),
             props.questions.map((q, idx)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$apps$2f$web$2f$src$2f$components$2f$ui$2f$card$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Card"], {
@@ -214,12 +218,12 @@ function QuizRunner(props) {
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/apps/web/src/components/quizzes/quiz-runner.tsx",
-                                lineNumber: 65,
+                                lineNumber: 74,
                                 columnNumber: 13
                             }, this)
                         }, void 0, false, {
                             fileName: "[project]/apps/web/src/components/quizzes/quiz-runner.tsx",
-                            lineNumber: 64,
+                            lineNumber: 73,
                             columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$apps$2f$web$2f$src$2f$components$2f$ui$2f$card$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["CardContent"], {
@@ -241,25 +245,25 @@ function QuizRunner(props) {
                                                             }))
                                                 }, void 0, false, {
                                                     fileName: "[project]/apps/web/src/components/quizzes/quiz-runner.tsx",
-                                                    lineNumber: 74,
+                                                    lineNumber: 83,
                                                     columnNumber: 21
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                                     children: opt
                                                 }, void 0, false, {
                                                     fileName: "[project]/apps/web/src/components/quizzes/quiz-runner.tsx",
-                                                    lineNumber: 81,
+                                                    lineNumber: 90,
                                                     columnNumber: 21
                                                 }, this)
                                             ]
                                         }, opt, true, {
                                             fileName: "[project]/apps/web/src/components/quizzes/quiz-runner.tsx",
-                                            lineNumber: 73,
+                                            lineNumber: 82,
                                             columnNumber: 19
                                         }, this))
                                 }, void 0, false, {
                                     fileName: "[project]/apps/web/src/components/quizzes/quiz-runner.tsx",
-                                    lineNumber: 71,
+                                    lineNumber: 80,
                                     columnNumber: 15
                                 }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$apps$2f$web$2f$src$2f$components$2f$ui$2f$input$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Input"], {
                                     value: answers[q.id] ?? "",
@@ -270,7 +274,7 @@ function QuizRunner(props) {
                                     placeholder: "Tu respuesta"
                                 }, void 0, false, {
                                     fileName: "[project]/apps/web/src/components/quizzes/quiz-runner.tsx",
-                                    lineNumber: 86,
+                                    lineNumber: 95,
                                     columnNumber: 15
                                 }, this),
                                 result ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -286,7 +290,7 @@ function QuizRunner(props) {
                                                     children: r.ok ? "Correcto" : "Incorrecto"
                                                 }, void 0, false, {
                                                     fileName: "[project]/apps/web/src/components/quizzes/quiz-runner.tsx",
-                                                    lineNumber: 100,
+                                                    lineNumber: 109,
                                                     columnNumber: 23
                                                 }, this),
                                                 !r.ok ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -296,7 +300,7 @@ function QuizRunner(props) {
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/apps/web/src/components/quizzes/quiz-runner.tsx",
-                                                    lineNumber: 101,
+                                                    lineNumber: 110,
                                                     columnNumber: 32
                                                 }, this) : null,
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -304,31 +308,31 @@ function QuizRunner(props) {
                                                     children: r.explanation
                                                 }, void 0, false, {
                                                     fileName: "[project]/apps/web/src/components/quizzes/quiz-runner.tsx",
-                                                    lineNumber: 102,
+                                                    lineNumber: 111,
                                                     columnNumber: 23
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/apps/web/src/components/quizzes/quiz-runner.tsx",
-                                            lineNumber: 99,
+                                            lineNumber: 108,
                                             columnNumber: 21
                                         }, this);
                                     })()
                                 }, void 0, false, {
                                     fileName: "[project]/apps/web/src/components/quizzes/quiz-runner.tsx",
-                                    lineNumber: 94,
+                                    lineNumber: 103,
                                     columnNumber: 15
                                 }, this) : null
                             ]
                         }, void 0, true, {
                             fileName: "[project]/apps/web/src/components/quizzes/quiz-runner.tsx",
-                            lineNumber: 69,
+                            lineNumber: 78,
                             columnNumber: 11
                         }, this)
                     ]
                 }, q.id, true, {
                     fileName: "[project]/apps/web/src/components/quizzes/quiz-runner.tsx",
-                    lineNumber: 63,
+                    lineNumber: 72,
                     columnNumber: 9
                 }, this)),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$apps$2f$web$2f$src$2f$components$2f$ui$2f$button$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Button"], {
@@ -337,7 +341,7 @@ function QuizRunner(props) {
                 children: submitting ? "Enviando..." : "Enviar"
             }, void 0, false, {
                 fileName: "[project]/apps/web/src/components/quizzes/quiz-runner.tsx",
-                lineNumber: 112,
+                lineNumber: 121,
                 columnNumber: 7
             }, this),
             result ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -352,13 +356,13 @@ function QuizRunner(props) {
                         children: result.score < Math.ceil(result.maxScore * 0.6) ? "Recomendación: repasa el módulo y reintenta mañana." : "Bien: puedes continuar con el siguiente módulo."
                     }, void 0, false, {
                         fileName: "[project]/apps/web/src/components/quizzes/quiz-runner.tsx",
-                        lineNumber: 119,
+                        lineNumber: 128,
                         columnNumber: 11
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/apps/web/src/components/quizzes/quiz-runner.tsx",
-                lineNumber: 117,
+                lineNumber: 126,
                 columnNumber: 9
             }, this) : null,
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -369,13 +373,13 @@ function QuizRunner(props) {
                 ]
             }, void 0, true, {
                 fileName: "[project]/apps/web/src/components/quizzes/quiz-runner.tsx",
-                lineNumber: 127,
+                lineNumber: 136,
                 columnNumber: 7
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/apps/web/src/components/quizzes/quiz-runner.tsx",
-        lineNumber: 59,
+        lineNumber: 68,
         columnNumber: 5
     }, this);
 }

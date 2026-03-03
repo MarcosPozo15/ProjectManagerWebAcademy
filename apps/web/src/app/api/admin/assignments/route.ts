@@ -34,8 +34,8 @@ export async function POST(req: Request) {
   }
 
   await prisma.teacherStudentAssignment.upsert({
-    where: { teacherId_studentId: { teacherId: teacher.id, studentId: student.id } },
-    update: {},
+    where: { studentId: student.id },
+    update: { teacherId: teacher.id },
     create: { teacherId: teacher.id, studentId: student.id },
     select: { id: true },
   });
@@ -54,6 +54,6 @@ export async function DELETE(req: Request) {
     return NextResponse.json({ error: "Missing teacherId/studentId" }, { status: 400 });
   }
 
-  await prisma.teacherStudentAssignment.deleteMany({ where: { teacherId, studentId } });
+  await prisma.teacherStudentAssignment.deleteMany({ where: { studentId } });
   return NextResponse.json({ ok: true });
 }

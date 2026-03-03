@@ -30,6 +30,15 @@ export async function POST(_req: Request, ctx: { params: Promise<{ lessonId: str
     select: { id: true },
   });
 
+  await prisma.event.create({
+    data: {
+      userId: user.id,
+      name: "lesson_completed",
+      properties: { lessonId },
+    },
+    select: { id: true },
+  });
+
   return NextResponse.json({ ok: true }, { status: 201 });
 }
 
@@ -46,6 +55,15 @@ export async function DELETE(_req: Request, ctx: { params: Promise<{ lessonId: s
     where: { userId_lessonId: { userId: user.id, lessonId } },
     update: { completedAt: null },
     create: { userId: user.id, lessonId, completedAt: null },
+    select: { id: true },
+  });
+
+  await prisma.event.create({
+    data: {
+      userId: user.id,
+      name: "lesson_marked_pending",
+      properties: { lessonId },
+    },
     select: { id: true },
   });
 

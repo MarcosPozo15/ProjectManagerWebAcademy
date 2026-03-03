@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { redirect } from "next/navigation";
 
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -11,6 +12,10 @@ export default async function ModulePage({
 }: {
   params: Promise<{ pathSlug: string; moduleSlug: string }>;
 }) {
+  const session = await getSessionUser();
+  if (!session) redirect("/login");
+  if (session.role !== "USER") redirect("/dashboard");
+
   const { pathSlug, moduleSlug } = await params;
 
   const path = await prisma.learningPath.findUnique({
@@ -20,22 +25,21 @@ export default async function ModulePage({
 
   if (!path) notFound();
 
-  const module = await prisma.module.findFirst({
+  const moduleRow = await prisma.module.findFirst({
     where: { learningPathId: path.id, slug: moduleSlug },
     include: {
-      lessons: { orderBy: { orderBy: { order: "asc" } } as any },
+      lessons: { orderBy: { order: "asc" } },
       quizzes: { select: { slug: true, title: true } },
       projects: { select: { slug: true, title: true } },
     },
   });
 
-  if (!module) notFound();
+  if (!moduleRow) notFound();
 
-  const session = await getSessionUser();
-  const me = session ? await prisma.user.findUnique({ where: { email: session.email }, select: { id: true } }) : null;
+  const me = await prisma.user.findUnique({ where: { email: session.email }, select: { id: true } });
   const progress = me
     ? await prisma.progress.findMany({
-        where: { userId: me.id, completedAt: { not: null }, lesson: { moduleId: module.id } },
+        where: { userId: me.id, completedAt: { not: null }, lesson: { moduleId: moduleRow.id } },
         select: { lessonId: true },
       })
     : [];
@@ -51,8 +55,8 @@ export default async function ModulePage({
           {" / "}
           <span>{path.title}</span>
         </div>
-        <h1 className="text-balance text-2xl font-semibold tracking-tight md:text-3xl">{module.title}</h1>
-        <p className="text-pretty text-muted-foreground">{module.description}</p>
+        <h1 className="text-balance text-2xl font-semibold tracking-tight md:text-3xl">{moduleRow.title}</h1>
+        <p className="text-pretty text-muted-foreground">{moduleRow.description}</p>
       </div>
 
       <Card>
@@ -60,10 +64,10 @@ export default async function ModulePage({
           <CardTitle className="text-base">Lecciones</CardTitle>
         </CardHeader>
         <CardContent className="grid gap-2 md:grid-cols-2">
-          {module.lessons.map((l) => (
+          {moduleRow.lessons.map((l) => (
             <Link
               key={l.slug}
-              href={`/learning/${path.slug}/${module.slug}/${l.slug}`}
+              href={`/learning/${path.slug}/${moduleRow.slug}/${l.slug}`}
               className="rounded-md border px-3 py-2 text-sm hover:bg-muted"
             >
               {l.order}. {l.title}
@@ -75,16 +79,16 @@ export default async function ModulePage({
         </CardContent>
       </Card>
 
-      {module.quizzes.length ? (
+      {moduleRow.quizzes.length ? (
         <Card>
           <CardHeader>
             <CardTitle className="text-base">Quiz</CardTitle>
           </CardHeader>
           <CardContent className="grid gap-2 md:grid-cols-2">
-            {module.quizzes.map((q) => (
+            {moduleRow.quizzes.map((q) => (
               <Link
                 key={q.slug}
-                href={`/quizzes/${path.slug}/${module.slug}/${q.slug}`}
+                href={`/quizzes/${path.slug}/${moduleRow.slug}/${q.slug}`}
                 className="rounded-md border px-3 py-2 text-sm hover:bg-muted"
               >
                 {q.title}

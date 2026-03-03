@@ -1,6 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
+import { useRouter } from "next/navigation";
 
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -8,6 +9,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { toast } from "sonner";
 
 export function ExerciseSubmission(props: { exerciseId: string; requiredFiles: string[] }) {
+  const router = useRouter();
   const [comment, setComment] = useState("");
   const [files, setFiles] = useState<FileList | null>(null);
   const [loading, setLoading] = useState(false);
@@ -30,12 +32,13 @@ export function ExerciseSubmission(props: { exerciseId: string; requiredFiles: s
       const res = await fetch("/api/submissions", { method: "POST", body: form });
       const data = (await res.json().catch(() => null)) as { error?: string } | { ok: true } | null;
       if (!res.ok) {
-        toast.error((data as any)?.error ?? "No se pudo enviar la entrega");
+        toast.error((data && "error" in data ? data.error : null) ?? "No se pudo enviar la entrega");
         return;
       }
       toast.success("Entrega enviada");
       setComment("");
       setFiles(null);
+      router.refresh();
     } finally {
       setLoading(false);
     }

@@ -39,5 +39,14 @@ export async function POST(req: Request) {
     select: { id: true },
   });
 
+  await prisma.event.create({
+    data: {
+      userId: user.id,
+      name: "project_submitted",
+      properties: { projectId: project.id },
+    },
+    select: { id: true },
+  });
+
   return NextResponse.json({ ok: true }, { status: 201 });
 }

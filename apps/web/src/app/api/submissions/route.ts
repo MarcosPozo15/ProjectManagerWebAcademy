@@ -40,7 +40,7 @@ export async function POST(req: Request) {
   });
   if (!exercise) return NextResponse.json({ error: "Exercise not found" }, { status: 404 });
 
-  const assignment = await prisma.teacherStudentAssignment.findFirst({
+  const assignment = await prisma.teacherStudentAssignment.findUnique({
     where: { studentId: user.id },
     select: { teacherId: true },
   });
@@ -64,6 +64,15 @@ export async function POST(req: Request) {
       teacherId: assignment?.teacherId ?? null,
       status: "SUBMITTED",
       comment,
+    },
+    select: { id: true },
+  });
+
+  await prisma.event.create({
+    data: {
+      userId: user.id,
+      name: "submission_sent",
+      properties: { submissionId: submission.id, exerciseId: exercise.id, teacherId: assignment?.teacherId ?? null },
     },
     select: { id: true },
   });

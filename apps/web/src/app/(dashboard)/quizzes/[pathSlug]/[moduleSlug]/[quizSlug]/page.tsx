@@ -1,28 +1,34 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { redirect } from "next/navigation";
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { prisma } from "@/infrastructure/db/prisma";
 import { QuizRunner } from "@/components/quizzes/quiz-runner";
+import { getSessionUser } from "@/infrastructure/auth/session";
 
 export default async function QuizPage({
   params,
 }: {
   params: Promise<{ pathSlug: string; moduleSlug: string; quizSlug: string }>;
 }) {
+  const session = await getSessionUser();
+  if (!session) redirect("/login");
+  if (session.role !== "USER") redirect("/dashboard");
+
   const { pathSlug, moduleSlug, quizSlug } = await params;
 
   const path = await prisma.learningPath.findUnique({ where: { slug: pathSlug }, select: { id: true, slug: true, title: true } });
   if (!path) notFound();
 
-  const module = await prisma.module.findFirst({
+  const moduleRow = await prisma.module.findFirst({
     where: { learningPathId: path.id, slug: moduleSlug },
     select: { id: true, slug: true, title: true },
   });
-  if (!module) notFound();
+  if (!moduleRow) notFound();
 
   const quiz = await prisma.quiz.findFirst({
-    where: { moduleId: module.id, slug: quizSlug },
+    where: { moduleId: moduleRow.id, slug: quizSlug },
     select: {
       id: true,
       slug: true,
@@ -42,7 +48,7 @@ export default async function QuizPage({
         {" / "}
         <span>{path.title}</span>
         {" / "}
-        <span>{module.title}</span>
+        <span>{moduleRow.title}</span>
       </div>
 
       <Card>

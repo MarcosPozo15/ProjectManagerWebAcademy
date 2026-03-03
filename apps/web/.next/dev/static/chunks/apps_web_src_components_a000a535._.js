@@ -442,6 +442,7 @@ __turbopack_context__.s([
 ]);
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/dist/compiled/react/jsx-dev-runtime.js [app-client] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/dist/compiled/react/index.js [app-client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$navigation$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/navigation.js [app-client] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$apps$2f$web$2f$src$2f$components$2f$ui$2f$button$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/apps/web/src/components/ui/button.tsx [app-client] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$apps$2f$web$2f$src$2f$components$2f$ui$2f$card$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/apps/web/src/components/ui/card.tsx [app-client] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$apps$2f$web$2f$src$2f$components$2f$ui$2f$textarea$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/apps/web/src/components/ui/textarea.tsx [app-client] (ecmascript)");
@@ -454,8 +455,10 @@ var _s = __turbopack_context__.k.signature();
 ;
 ;
 ;
+;
 function CorrectionsInbox() {
     _s();
+    const router = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$navigation$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useRouter"])();
     const [rows, setRows] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])([]);
     const [loading, setLoading] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(false);
     const [selectedId, setSelectedId] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(null);
@@ -476,7 +479,7 @@ function CorrectionsInbox() {
             const res = await fetch("/api/corrections");
             const data = await res.json().catch(()=>null);
             if (!res.ok) {
-                __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$sonner$2f$dist$2f$index$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["toast"].error(data?.error ?? "No se pudieron cargar correcciones");
+                __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$sonner$2f$dist$2f$index$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["toast"].error((data && "error" in data ? data.error : null) ?? "No se pudieron cargar correcciones");
                 return;
             }
             const list = data.submissions;
@@ -527,6 +530,7 @@ function CorrectionsInbox() {
         }
         __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$sonner$2f$dist$2f$index$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["toast"].success("Corrección guardada");
         void load();
+        router.refresh();
     };
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
         className: "grid gap-6 lg:grid-cols-3",
@@ -540,12 +544,12 @@ function CorrectionsInbox() {
                             children: "Entregas"
                         }, void 0, false, {
                             fileName: "[project]/apps/web/src/components/professor/corrections-inbox.tsx",
-                            lineNumber: 119,
+                            lineNumber: 126,
                             columnNumber: 11
                         }, this)
                     }, void 0, false, {
                         fileName: "[project]/apps/web/src/components/professor/corrections-inbox.tsx",
-                        lineNumber: 118,
+                        lineNumber: 125,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$apps$2f$web$2f$src$2f$components$2f$ui$2f$card$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["CardContent"], {
@@ -559,7 +563,7 @@ function CorrectionsInbox() {
                                 children: loading ? "Cargando..." : "Refrescar"
                             }, void 0, false, {
                                 fileName: "[project]/apps/web/src/components/professor/corrections-inbox.tsx",
-                                lineNumber: 122,
+                                lineNumber: 129,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -573,7 +577,7 @@ function CorrectionsInbox() {
                                                 children: r.exercise.title
                                             }, void 0, false, {
                                                 fileName: "[project]/apps/web/src/components/professor/corrections-inbox.tsx",
-                                                lineNumber: 127,
+                                                lineNumber: 134,
                                                 columnNumber: 17
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -581,7 +585,7 @@ function CorrectionsInbox() {
                                                 children: r.student.email
                                             }, void 0, false, {
                                                 fileName: "[project]/apps/web/src/components/professor/corrections-inbox.tsx",
-                                                lineNumber: 128,
+                                                lineNumber: 135,
                                                 columnNumber: 17
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -592,30 +596,41 @@ function CorrectionsInbox() {
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/apps/web/src/components/professor/corrections-inbox.tsx",
-                                                lineNumber: 129,
+                                                lineNumber: 136,
                                                 columnNumber: 17
-                                            }, this)
+                                            }, this),
+                                            r.feedback[0]?.score != null ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                className: "text-xs text-muted-foreground",
+                                                children: [
+                                                    "Nota: ",
+                                                    r.feedback[0].score
+                                                ]
+                                            }, void 0, true, {
+                                                fileName: "[project]/apps/web/src/components/professor/corrections-inbox.tsx",
+                                                lineNumber: 137,
+                                                columnNumber: 49
+                                            }, this) : null
                                         ]
                                     }, r.id, true, {
                                         fileName: "[project]/apps/web/src/components/professor/corrections-inbox.tsx",
-                                        lineNumber: 126,
+                                        lineNumber: 133,
                                         columnNumber: 28
                                     }, this))
                             }, void 0, false, {
                                 fileName: "[project]/apps/web/src/components/professor/corrections-inbox.tsx",
-                                lineNumber: 125,
+                                lineNumber: 132,
                                 columnNumber: 11
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/apps/web/src/components/professor/corrections-inbox.tsx",
-                        lineNumber: 121,
+                        lineNumber: 128,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/apps/web/src/components/professor/corrections-inbox.tsx",
-                lineNumber: 117,
+                lineNumber: 124,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$apps$2f$web$2f$src$2f$components$2f$ui$2f$card$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Card"], {
@@ -627,12 +642,12 @@ function CorrectionsInbox() {
                             children: "Detalle"
                         }, void 0, false, {
                             fileName: "[project]/apps/web/src/components/professor/corrections-inbox.tsx",
-                            lineNumber: 137,
+                            lineNumber: 145,
                             columnNumber: 11
                         }, this)
                     }, void 0, false, {
                         fileName: "[project]/apps/web/src/components/professor/corrections-inbox.tsx",
-                        lineNumber: 136,
+                        lineNumber: 144,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$apps$2f$web$2f$src$2f$components$2f$ui$2f$card$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["CardContent"], {
@@ -642,7 +657,7 @@ function CorrectionsInbox() {
                             children: "Selecciona una entrega."
                         }, void 0, false, {
                             fileName: "[project]/apps/web/src/components/professor/corrections-inbox.tsx",
-                            lineNumber: 140,
+                            lineNumber: 148,
                             columnNumber: 24
                         }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Fragment"], {
                             children: [
@@ -654,7 +669,7 @@ function CorrectionsInbox() {
                                             children: "Alumno"
                                         }, void 0, false, {
                                             fileName: "[project]/apps/web/src/components/professor/corrections-inbox.tsx",
-                                            lineNumber: 142,
+                                            lineNumber: 150,
                                             columnNumber: 17
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -662,13 +677,13 @@ function CorrectionsInbox() {
                                             children: selected.student.name ?? selected.student.email
                                         }, void 0, false, {
                                             fileName: "[project]/apps/web/src/components/professor/corrections-inbox.tsx",
-                                            lineNumber: 143,
+                                            lineNumber: 151,
                                             columnNumber: 17
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/apps/web/src/components/professor/corrections-inbox.tsx",
-                                    lineNumber: 141,
+                                    lineNumber: 149,
                                     columnNumber: 15
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -679,7 +694,7 @@ function CorrectionsInbox() {
                                             children: "Ejercicio"
                                         }, void 0, false, {
                                             fileName: "[project]/apps/web/src/components/professor/corrections-inbox.tsx",
-                                            lineNumber: 147,
+                                            lineNumber: 155,
                                             columnNumber: 17
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -687,7 +702,7 @@ function CorrectionsInbox() {
                                             children: selected.exercise.title
                                         }, void 0, false, {
                                             fileName: "[project]/apps/web/src/components/professor/corrections-inbox.tsx",
-                                            lineNumber: 148,
+                                            lineNumber: 156,
                                             columnNumber: 17
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -698,13 +713,13 @@ function CorrectionsInbox() {
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/apps/web/src/components/professor/corrections-inbox.tsx",
-                                            lineNumber: 149,
+                                            lineNumber: 157,
                                             columnNumber: 17
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/apps/web/src/components/professor/corrections-inbox.tsx",
-                                    lineNumber: 146,
+                                    lineNumber: 154,
                                     columnNumber: 15
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -715,7 +730,7 @@ function CorrectionsInbox() {
                                             children: "Comentario del alumno"
                                         }, void 0, false, {
                                             fileName: "[project]/apps/web/src/components/professor/corrections-inbox.tsx",
-                                            lineNumber: 153,
+                                            lineNumber: 161,
                                             columnNumber: 17
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -723,13 +738,13 @@ function CorrectionsInbox() {
                                             children: selected.comment || "(sin comentario)"
                                         }, void 0, false, {
                                             fileName: "[project]/apps/web/src/components/professor/corrections-inbox.tsx",
-                                            lineNumber: 154,
+                                            lineNumber: 162,
                                             columnNumber: 17
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/apps/web/src/components/professor/corrections-inbox.tsx",
-                                    lineNumber: 152,
+                                    lineNumber: 160,
                                     columnNumber: 15
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -740,7 +755,7 @@ function CorrectionsInbox() {
                                             children: "Archivos"
                                         }, void 0, false, {
                                             fileName: "[project]/apps/web/src/components/professor/corrections-inbox.tsx",
-                                            lineNumber: 160,
+                                            lineNumber: 168,
                                             columnNumber: 17
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -751,18 +766,18 @@ function CorrectionsInbox() {
                                                     children: f.originalName
                                                 }, f.id, false, {
                                                     fileName: "[project]/apps/web/src/components/professor/corrections-inbox.tsx",
-                                                    lineNumber: 162,
+                                                    lineNumber: 170,
                                                     columnNumber: 44
                                                 }, this))
                                         }, void 0, false, {
                                             fileName: "[project]/apps/web/src/components/professor/corrections-inbox.tsx",
-                                            lineNumber: 161,
+                                            lineNumber: 169,
                                             columnNumber: 17
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/apps/web/src/components/professor/corrections-inbox.tsx",
-                                    lineNumber: 159,
+                                    lineNumber: 167,
                                     columnNumber: 15
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -773,7 +788,7 @@ function CorrectionsInbox() {
                                             children: "Nueva corrección"
                                         }, void 0, false, {
                                             fileName: "[project]/apps/web/src/components/professor/corrections-inbox.tsx",
-                                            lineNumber: 169,
+                                            lineNumber: 177,
                                             columnNumber: 17
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -789,7 +804,7 @@ function CorrectionsInbox() {
                                                             children: "IN_REVIEW"
                                                         }, void 0, false, {
                                                             fileName: "[project]/apps/web/src/components/professor/corrections-inbox.tsx",
-                                                            lineNumber: 172,
+                                                            lineNumber: 180,
                                                             columnNumber: 21
                                                         }, this),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("option", {
@@ -797,7 +812,7 @@ function CorrectionsInbox() {
                                                             children: "APPROVED"
                                                         }, void 0, false, {
                                                             fileName: "[project]/apps/web/src/components/professor/corrections-inbox.tsx",
-                                                            lineNumber: 173,
+                                                            lineNumber: 181,
                                                             columnNumber: 21
                                                         }, this),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("option", {
@@ -805,13 +820,13 @@ function CorrectionsInbox() {
                                                             children: "NEEDS_CHANGES"
                                                         }, void 0, false, {
                                                             fileName: "[project]/apps/web/src/components/professor/corrections-inbox.tsx",
-                                                            lineNumber: 174,
+                                                            lineNumber: 182,
                                                             columnNumber: 21
                                                         }, this)
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/apps/web/src/components/professor/corrections-inbox.tsx",
-                                                    lineNumber: 171,
+                                                    lineNumber: 179,
                                                     columnNumber: 19
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
@@ -821,7 +836,7 @@ function CorrectionsInbox() {
                                                     onChange: (e)=>setScore(e.target.value)
                                                 }, void 0, false, {
                                                     fileName: "[project]/apps/web/src/components/professor/corrections-inbox.tsx",
-                                                    lineNumber: 176,
+                                                    lineNumber: 184,
                                                     columnNumber: 19
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$apps$2f$web$2f$src$2f$components$2f$ui$2f$button$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Button"], {
@@ -829,13 +844,13 @@ function CorrectionsInbox() {
                                                     children: "Guardar"
                                                 }, void 0, false, {
                                                     fileName: "[project]/apps/web/src/components/professor/corrections-inbox.tsx",
-                                                    lineNumber: 177,
+                                                    lineNumber: 185,
                                                     columnNumber: 19
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/apps/web/src/components/professor/corrections-inbox.tsx",
-                                            lineNumber: 170,
+                                            lineNumber: 178,
                                             columnNumber: 17
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$apps$2f$web$2f$src$2f$components$2f$ui$2f$textarea$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Textarea"], {
@@ -844,13 +859,13 @@ function CorrectionsInbox() {
                                             placeholder: "Feedback para el alumno"
                                         }, void 0, false, {
                                             fileName: "[project]/apps/web/src/components/professor/corrections-inbox.tsx",
-                                            lineNumber: 179,
+                                            lineNumber: 187,
                                             columnNumber: 17
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/apps/web/src/components/professor/corrections-inbox.tsx",
-                                    lineNumber: 168,
+                                    lineNumber: 176,
                                     columnNumber: 15
                                 }, this),
                                 selected.feedback.length ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -861,7 +876,7 @@ function CorrectionsInbox() {
                                             children: "Último feedback"
                                         }, void 0, false, {
                                             fileName: "[project]/apps/web/src/components/professor/corrections-inbox.tsx",
-                                            lineNumber: 183,
+                                            lineNumber: 191,
                                             columnNumber: 19
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -876,7 +891,7 @@ function CorrectionsInbox() {
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/apps/web/src/components/professor/corrections-inbox.tsx",
-                                                    lineNumber: 185,
+                                                    lineNumber: 193,
                                                     columnNumber: 21
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -884,7 +899,7 @@ function CorrectionsInbox() {
                                                     children: selected.feedback[0].comment
                                                 }, void 0, false, {
                                                     fileName: "[project]/apps/web/src/components/professor/corrections-inbox.tsx",
-                                                    lineNumber: 188,
+                                                    lineNumber: 196,
                                                     columnNumber: 21
                                                 }, this),
                                                 selected.feedback[0].score != null ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -895,42 +910,46 @@ function CorrectionsInbox() {
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/apps/web/src/components/professor/corrections-inbox.tsx",
-                                                    lineNumber: 189,
+                                                    lineNumber: 197,
                                                     columnNumber: 59
                                                 }, this) : null
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/apps/web/src/components/professor/corrections-inbox.tsx",
-                                            lineNumber: 184,
+                                            lineNumber: 192,
                                             columnNumber: 19
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/apps/web/src/components/professor/corrections-inbox.tsx",
-                                    lineNumber: 182,
+                                    lineNumber: 190,
                                     columnNumber: 43
                                 }, this) : null
                             ]
                         }, void 0, true)
                     }, void 0, false, {
                         fileName: "[project]/apps/web/src/components/professor/corrections-inbox.tsx",
-                        lineNumber: 139,
+                        lineNumber: 147,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/apps/web/src/components/professor/corrections-inbox.tsx",
-                lineNumber: 135,
+                lineNumber: 143,
                 columnNumber: 7
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/apps/web/src/components/professor/corrections-inbox.tsx",
-        lineNumber: 116,
+        lineNumber: 123,
         columnNumber: 10
     }, this);
 }
-_s(CorrectionsInbox, "cFYJ1b/6NTRZDUPCrSFyKyj2YFU=");
+_s(CorrectionsInbox, "EGtGV8Ht41ze7OLZ8T0diaR8FO8=", false, function() {
+    return [
+        __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$navigation$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useRouter"]
+    ];
+});
 _c = CorrectionsInbox;
 var _c;
 __turbopack_context__.k.register(_c, "CorrectionsInbox");

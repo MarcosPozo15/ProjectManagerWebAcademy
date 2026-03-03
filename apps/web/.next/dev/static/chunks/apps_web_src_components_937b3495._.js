@@ -540,66 +540,78 @@ function UsersAdminTable() {
         role,
         isActive
     ]);
-    const load = async ()=>{
-        setLoading(true);
-        try {
-            const res = await fetch(`/api/admin/users?${queryString}`);
-            const data = await res.json().catch(()=>null);
+    const load = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useCallback"])({
+        "UsersAdminTable.useCallback[load]": async ()=>{
+            setLoading(true);
+            try {
+                const res = await fetch(`/api/admin/users?${queryString}`);
+                const data = await res.json().catch({
+                    "UsersAdminTable.useCallback[load]": ()=>null
+                }["UsersAdminTable.useCallback[load]"]);
+                if (!res.ok) {
+                    __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$sonner$2f$dist$2f$index$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["toast"].error((data && "error" in data ? data.error : null) ?? "No se pudieron cargar usuarios");
+                    return;
+                }
+                setRows(data.users);
+            } finally{
+                setLoading(false);
+            }
+        }
+    }["UsersAdminTable.useCallback[load]"], [
+        queryString
+    ]);
+    const loadProfessors = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useCallback"])({
+        "UsersAdminTable.useCallback[loadProfessors]": async ()=>{
+            const res = await fetch(`/api/admin/users?role=PROFESSOR&take=200`);
+            const data = await res.json().catch({
+                "UsersAdminTable.useCallback[loadProfessors]": ()=>null
+            }["UsersAdminTable.useCallback[loadProfessors]"]);
             if (!res.ok) {
-                __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$sonner$2f$dist$2f$index$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["toast"].error(data?.error ?? "No se pudieron cargar usuarios");
+                __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$sonner$2f$dist$2f$index$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["toast"].error((data && "error" in data ? data.error : null) ?? "No se pudieron cargar profesores");
                 return;
             }
-            setRows(data.users);
-        } finally{
-            setLoading(false);
+            const list = data.users.map({
+                "UsersAdminTable.useCallback[loadProfessors].list": (u)=>({
+                        id: u.id,
+                        email: u.email,
+                        name: u.name
+                    })
+            }["UsersAdminTable.useCallback[loadProfessors].list"]);
+            setProfessors(list);
         }
-    };
-    const loadProfessors = async ()=>{
-        const res = await fetch(`/api/admin/users?role=PROFESSOR&take=200`);
-        const data = await res.json().catch(()=>null);
-        if (!res.ok) {
-            __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$sonner$2f$dist$2f$index$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["toast"].error(data?.error ?? "No se pudieron cargar profesores");
-            return;
-        }
-        const list = data.users.map((u)=>({
-                id: u.id,
-                email: u.email,
-                name: u.name
-            }));
-        setProfessors(list);
-    };
+    }["UsersAdminTable.useCallback[loadProfessors]"], []);
     (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useEffect"])({
         "UsersAdminTable.useEffect": ()=>{
             void load();
-        // eslint-disable-next-line react-hooks/exhaustive-deps
         }
     }["UsersAdminTable.useEffect"], [
-        queryString
+        load
     ]);
     (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useEffect"])({
         "UsersAdminTable.useEffect": ()=>{
             void loadProfessors();
-        // eslint-disable-next-line react-hooks/exhaustive-deps
         }
-    }["UsersAdminTable.useEffect"], []);
+    }["UsersAdminTable.useEffect"], [
+        loadProfessors
+    ]);
     const patchUser = async (id, payload)=>{
-        const res = await fetch(`/api/admin/users/${id}`, {
+        const res_0 = await fetch(`/api/admin/users/${id}`, {
             method: "PATCH",
             headers: {
                 "content-type": "application/json"
             },
             body: JSON.stringify(payload)
         });
-        if (!res.ok) {
-            const data = await res.json().catch(()=>null);
-            __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$sonner$2f$dist$2f$index$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["toast"].error(data?.error ?? "No se pudo actualizar");
+        if (!res_0.ok) {
+            const data_0 = await res_0.json().catch(()=>null);
+            __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$sonner$2f$dist$2f$index$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["toast"].error(data_0?.error ?? "No se pudo actualizar");
             return;
         }
         __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$sonner$2f$dist$2f$index$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["toast"].success("Actualizado");
         void load();
     };
     const assignTeacher = async (studentId, teacherId)=>{
-        const res = await fetch(`/api/admin/assignments`, {
+        const res_1 = await fetch(`/api/admin/assignments`, {
             method: "POST",
             headers: {
                 "content-type": "application/json"
@@ -609,9 +621,9 @@ function UsersAdminTable() {
                 teacherId
             })
         });
-        if (!res.ok) {
-            const data = await res.json().catch(()=>null);
-            __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$sonner$2f$dist$2f$index$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["toast"].error(data?.error ?? "No se pudo asignar profesor");
+        if (!res_1.ok) {
+            const data_1 = await res_1.json().catch(()=>null);
+            __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$sonner$2f$dist$2f$index$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["toast"].error(data_1?.error ?? "No se pudo asignar profesor");
             return;
         }
         __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$sonner$2f$dist$2f$index$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["toast"].success("Profesor asignado");
@@ -629,20 +641,20 @@ function UsersAdminTable() {
                         placeholder: "Buscar por email o nombre"
                     }, void 0, false, {
                         fileName: "[project]/apps/web/src/components/admin/users-admin-table.tsx",
-                        lineNumber: 131,
+                        lineNumber: 129,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("select", {
                         className: "h-10 rounded-md border bg-background px-3 text-sm",
                         value: role,
-                        onChange: (e)=>setRole(e.target.value),
+                        onChange: (e_0)=>setRole(e_0.target.value),
                         children: [
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("option", {
                                 value: "ALL",
                                 children: "Rol: todos"
                             }, void 0, false, {
                                 fileName: "[project]/apps/web/src/components/admin/users-admin-table.tsx",
-                                lineNumber: 133,
+                                lineNumber: 131,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("option", {
@@ -650,7 +662,7 @@ function UsersAdminTable() {
                                 children: "USER"
                             }, void 0, false, {
                                 fileName: "[project]/apps/web/src/components/admin/users-admin-table.tsx",
-                                lineNumber: 134,
+                                lineNumber: 132,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("option", {
@@ -658,7 +670,7 @@ function UsersAdminTable() {
                                 children: "PROFESSOR"
                             }, void 0, false, {
                                 fileName: "[project]/apps/web/src/components/admin/users-admin-table.tsx",
-                                lineNumber: 135,
+                                lineNumber: 133,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("option", {
@@ -666,7 +678,7 @@ function UsersAdminTable() {
                                 children: "ADMIN"
                             }, void 0, false, {
                                 fileName: "[project]/apps/web/src/components/admin/users-admin-table.tsx",
-                                lineNumber: 136,
+                                lineNumber: 134,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("option", {
@@ -674,26 +686,26 @@ function UsersAdminTable() {
                                 children: "EDITOR"
                             }, void 0, false, {
                                 fileName: "[project]/apps/web/src/components/admin/users-admin-table.tsx",
-                                lineNumber: 137,
+                                lineNumber: 135,
                                 columnNumber: 11
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/apps/web/src/components/admin/users-admin-table.tsx",
-                        lineNumber: 132,
+                        lineNumber: 130,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("select", {
                         className: "h-10 rounded-md border bg-background px-3 text-sm",
                         value: isActive,
-                        onChange: (e)=>setIsActive(e.target.value),
+                        onChange: (e_1)=>setIsActive(e_1.target.value),
                         children: [
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("option", {
                                 value: "ALL",
                                 children: "Estado: todos"
                             }, void 0, false, {
                                 fileName: "[project]/apps/web/src/components/admin/users-admin-table.tsx",
-                                lineNumber: 140,
+                                lineNumber: 138,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("option", {
@@ -701,7 +713,7 @@ function UsersAdminTable() {
                                 children: "Activo"
                             }, void 0, false, {
                                 fileName: "[project]/apps/web/src/components/admin/users-admin-table.tsx",
-                                lineNumber: 141,
+                                lineNumber: 139,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("option", {
@@ -709,13 +721,13 @@ function UsersAdminTable() {
                                 children: "Inactivo"
                             }, void 0, false, {
                                 fileName: "[project]/apps/web/src/components/admin/users-admin-table.tsx",
-                                lineNumber: 142,
+                                lineNumber: 140,
                                 columnNumber: 11
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/apps/web/src/components/admin/users-admin-table.tsx",
-                        lineNumber: 139,
+                        lineNumber: 137,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$apps$2f$web$2f$src$2f$components$2f$ui$2f$button$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Button"], {
@@ -725,13 +737,13 @@ function UsersAdminTable() {
                         children: loading ? "Cargando..." : "Refrescar"
                     }, void 0, false, {
                         fileName: "[project]/apps/web/src/components/admin/users-admin-table.tsx",
-                        lineNumber: 144,
+                        lineNumber: 142,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/apps/web/src/components/admin/users-admin-table.tsx",
-                lineNumber: 130,
+                lineNumber: 128,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$apps$2f$web$2f$src$2f$components$2f$ui$2f$table$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Table"], {
@@ -743,42 +755,42 @@ function UsersAdminTable() {
                                     children: "Email"
                                 }, void 0, false, {
                                     fileName: "[project]/apps/web/src/components/admin/users-admin-table.tsx",
-                                    lineNumber: 152,
+                                    lineNumber: 150,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$apps$2f$web$2f$src$2f$components$2f$ui$2f$table$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["TableHead"], {
                                     children: "Nombre"
                                 }, void 0, false, {
                                     fileName: "[project]/apps/web/src/components/admin/users-admin-table.tsx",
-                                    lineNumber: 153,
+                                    lineNumber: 151,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$apps$2f$web$2f$src$2f$components$2f$ui$2f$table$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["TableHead"], {
                                     children: "Rol"
                                 }, void 0, false, {
                                     fileName: "[project]/apps/web/src/components/admin/users-admin-table.tsx",
-                                    lineNumber: 154,
+                                    lineNumber: 152,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$apps$2f$web$2f$src$2f$components$2f$ui$2f$table$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["TableHead"], {
                                     children: "Estado"
                                 }, void 0, false, {
                                     fileName: "[project]/apps/web/src/components/admin/users-admin-table.tsx",
-                                    lineNumber: 155,
+                                    lineNumber: 153,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$apps$2f$web$2f$src$2f$components$2f$ui$2f$table$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["TableHead"], {
                                     children: "Profesor"
                                 }, void 0, false, {
                                     fileName: "[project]/apps/web/src/components/admin/users-admin-table.tsx",
-                                    lineNumber: 156,
+                                    lineNumber: 154,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$apps$2f$web$2f$src$2f$components$2f$ui$2f$table$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["TableHead"], {
                                     children: "Actividad"
                                 }, void 0, false, {
                                     fileName: "[project]/apps/web/src/components/admin/users-admin-table.tsx",
-                                    lineNumber: 157,
+                                    lineNumber: 155,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$apps$2f$web$2f$src$2f$components$2f$ui$2f$table$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["TableHead"], {
@@ -786,43 +798,43 @@ function UsersAdminTable() {
                                     children: "Acciones"
                                 }, void 0, false, {
                                     fileName: "[project]/apps/web/src/components/admin/users-admin-table.tsx",
-                                    lineNumber: 158,
+                                    lineNumber: 156,
                                     columnNumber: 13
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/apps/web/src/components/admin/users-admin-table.tsx",
-                            lineNumber: 151,
+                            lineNumber: 149,
                             columnNumber: 11
                         }, this)
                     }, void 0, false, {
                         fileName: "[project]/apps/web/src/components/admin/users-admin-table.tsx",
-                        lineNumber: 150,
+                        lineNumber: 148,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$apps$2f$web$2f$src$2f$components$2f$ui$2f$table$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["TableBody"], {
-                        children: rows.map((u)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$apps$2f$web$2f$src$2f$components$2f$ui$2f$table$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["TableRow"], {
+                        children: rows.map((u_0)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$apps$2f$web$2f$src$2f$components$2f$ui$2f$table$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["TableRow"], {
                                 children: [
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$apps$2f$web$2f$src$2f$components$2f$ui$2f$table$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["TableCell"], {
-                                        children: u.email
+                                        children: u_0.email
                                     }, void 0, false, {
                                         fileName: "[project]/apps/web/src/components/admin/users-admin-table.tsx",
-                                        lineNumber: 163,
+                                        lineNumber: 161,
                                         columnNumber: 15
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$apps$2f$web$2f$src$2f$components$2f$ui$2f$table$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["TableCell"], {
-                                        children: u.name ?? "—"
+                                        children: u_0.name ?? "—"
                                     }, void 0, false, {
                                         fileName: "[project]/apps/web/src/components/admin/users-admin-table.tsx",
-                                        lineNumber: 164,
+                                        lineNumber: 162,
                                         columnNumber: 15
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$apps$2f$web$2f$src$2f$components$2f$ui$2f$table$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["TableCell"], {
                                         children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("select", {
                                             className: "h-9 rounded-md border bg-background px-2 text-sm",
-                                            value: u.role,
-                                            onChange: (e)=>patchUser(u.id, {
-                                                    role: e.target.value
+                                            value: u_0.role,
+                                            onChange: (e_2)=>patchUser(u_0.id, {
+                                                    role: e_2.target.value
                                                 }),
                                             children: [
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("option", {
@@ -830,7 +842,7 @@ function UsersAdminTable() {
                                                     children: "USER"
                                                 }, void 0, false, {
                                                     fileName: "[project]/apps/web/src/components/admin/users-admin-table.tsx",
-                                                    lineNumber: 169,
+                                                    lineNumber: 167,
                                                     columnNumber: 19
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("option", {
@@ -838,7 +850,7 @@ function UsersAdminTable() {
                                                     children: "PROFESSOR"
                                                 }, void 0, false, {
                                                     fileName: "[project]/apps/web/src/components/admin/users-admin-table.tsx",
-                                                    lineNumber: 170,
+                                                    lineNumber: 168,
                                                     columnNumber: 19
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("option", {
@@ -846,7 +858,7 @@ function UsersAdminTable() {
                                                     children: "ADMIN"
                                                 }, void 0, false, {
                                                     fileName: "[project]/apps/web/src/components/admin/users-admin-table.tsx",
-                                                    lineNumber: 171,
+                                                    lineNumber: 169,
                                                     columnNumber: 19
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("option", {
@@ -854,45 +866,45 @@ function UsersAdminTable() {
                                                     children: "EDITOR"
                                                 }, void 0, false, {
                                                     fileName: "[project]/apps/web/src/components/admin/users-admin-table.tsx",
-                                                    lineNumber: 172,
+                                                    lineNumber: 170,
                                                     columnNumber: 19
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/apps/web/src/components/admin/users-admin-table.tsx",
-                                            lineNumber: 166,
+                                            lineNumber: 164,
                                             columnNumber: 17
                                         }, this)
                                     }, void 0, false, {
                                         fileName: "[project]/apps/web/src/components/admin/users-admin-table.tsx",
-                                        lineNumber: 165,
+                                        lineNumber: 163,
                                         columnNumber: 15
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$apps$2f$web$2f$src$2f$components$2f$ui$2f$table$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["TableCell"], {
-                                        children: u.isActive ? "Activo" : "Inactivo"
+                                        children: u_0.isActive ? "Activo" : "Inactivo"
                                     }, void 0, false, {
                                         fileName: "[project]/apps/web/src/components/admin/users-admin-table.tsx",
-                                        lineNumber: 175,
+                                        lineNumber: 173,
                                         columnNumber: 15
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$apps$2f$web$2f$src$2f$components$2f$ui$2f$table$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["TableCell"], {
-                                        children: u.role === "USER" ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                        children: u_0.role === "USER" ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                             className: "flex items-center gap-2",
                                             children: [
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                                     className: "text-sm text-muted-foreground",
-                                                    children: u.assignedTeacher?.email ?? "—"
+                                                    children: u_0.assignedTeacher?.email ?? "—"
                                                 }, void 0, false, {
                                                     fileName: "[project]/apps/web/src/components/admin/users-admin-table.tsx",
-                                                    lineNumber: 178,
+                                                    lineNumber: 176,
                                                     columnNumber: 21
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("select", {
                                                     className: "h-9 rounded-md border bg-background px-2 text-sm",
-                                                    value: selectedTeacher[u.id] ?? "",
-                                                    onChange: (e)=>setSelectedTeacher((s)=>({
+                                                    value: selectedTeacher[u_0.id] ?? "",
+                                                    onChange: (e_3)=>setSelectedTeacher((s)=>({
                                                                 ...s,
-                                                                [u.id]: e.target.value
+                                                                [u_0.id]: e_3.target.value
                                                             })),
                                                     children: [
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("option", {
@@ -900,7 +912,7 @@ function UsersAdminTable() {
                                                             children: "Elegir profesor"
                                                         }, void 0, false, {
                                                             fileName: "[project]/apps/web/src/components/admin/users-admin-table.tsx",
-                                                            lineNumber: 183,
+                                                            lineNumber: 181,
                                                             columnNumber: 23
                                                         }, this),
                                                         professors.map((p)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("option", {
@@ -908,42 +920,42 @@ function UsersAdminTable() {
                                                                 children: p.email
                                                             }, p.id, false, {
                                                                 fileName: "[project]/apps/web/src/components/admin/users-admin-table.tsx",
-                                                                lineNumber: 184,
+                                                                lineNumber: 182,
                                                                 columnNumber: 44
                                                             }, this))
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/apps/web/src/components/admin/users-admin-table.tsx",
-                                                    lineNumber: 179,
+                                                    lineNumber: 177,
                                                     columnNumber: 21
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$apps$2f$web$2f$src$2f$components$2f$ui$2f$button$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Button"], {
                                                     size: "sm",
                                                     variant: "outline",
-                                                    disabled: !selectedTeacher[u.id],
-                                                    onClick: ()=>void assignTeacher(u.id, selectedTeacher[u.id]),
+                                                    disabled: !selectedTeacher[u_0.id],
+                                                    onClick: ()=>void assignTeacher(u_0.id, selectedTeacher[u_0.id]),
                                                     children: "Guardar"
                                                 }, void 0, false, {
                                                     fileName: "[project]/apps/web/src/components/admin/users-admin-table.tsx",
-                                                    lineNumber: 188,
+                                                    lineNumber: 186,
                                                     columnNumber: 21
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/apps/web/src/components/admin/users-admin-table.tsx",
-                                            lineNumber: 177,
-                                            columnNumber: 38
+                                            lineNumber: 175,
+                                            columnNumber: 40
                                         }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                             className: "text-sm text-muted-foreground",
                                             children: "—"
                                         }, void 0, false, {
                                             fileName: "[project]/apps/web/src/components/admin/users-admin-table.tsx",
-                                            lineNumber: 191,
+                                            lineNumber: 189,
                                             columnNumber: 28
                                         }, this)
                                     }, void 0, false, {
                                         fileName: "[project]/apps/web/src/components/admin/users-admin-table.tsx",
-                                        lineNumber: 176,
+                                        lineNumber: 174,
                                         columnNumber: 15
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$apps$2f$web$2f$src$2f$components$2f$ui$2f$table$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["TableCell"], {
@@ -951,20 +963,20 @@ function UsersAdminTable() {
                                             className: "text-sm text-muted-foreground",
                                             children: [
                                                 "P:",
-                                                u._count.progress,
+                                                u_0._count.progress,
                                                 " Q:",
-                                                u._count.quizAttempts,
+                                                u_0._count.quizAttempts,
                                                 " E:",
-                                                u._count.projectSubmissions
+                                                u_0._count.projectSubmissions
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/apps/web/src/components/admin/users-admin-table.tsx",
-                                            lineNumber: 194,
+                                            lineNumber: 192,
                                             columnNumber: 17
                                         }, this)
                                     }, void 0, false, {
                                         fileName: "[project]/apps/web/src/components/admin/users-admin-table.tsx",
-                                        lineNumber: 193,
+                                        lineNumber: 191,
                                         columnNumber: 15
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$apps$2f$web$2f$src$2f$components$2f$ui$2f$table$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["TableCell"], {
@@ -974,40 +986,40 @@ function UsersAdminTable() {
                                             children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$apps$2f$web$2f$src$2f$components$2f$ui$2f$button$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Button"], {
                                                 size: "sm",
                                                 variant: "outline",
-                                                onClick: ()=>patchUser(u.id, {
-                                                        isActive: !u.isActive
+                                                onClick: ()=>patchUser(u_0.id, {
+                                                        isActive: !u_0.isActive
                                                     }),
-                                                children: u.isActive ? "Desactivar" : "Activar"
+                                                children: u_0.isActive ? "Desactivar" : "Activar"
                                             }, void 0, false, {
                                                 fileName: "[project]/apps/web/src/components/admin/users-admin-table.tsx",
-                                                lineNumber: 200,
+                                                lineNumber: 198,
                                                 columnNumber: 19
                                             }, this)
                                         }, void 0, false, {
                                             fileName: "[project]/apps/web/src/components/admin/users-admin-table.tsx",
-                                            lineNumber: 199,
+                                            lineNumber: 197,
                                             columnNumber: 17
                                         }, this)
                                     }, void 0, false, {
                                         fileName: "[project]/apps/web/src/components/admin/users-admin-table.tsx",
-                                        lineNumber: 198,
+                                        lineNumber: 196,
                                         columnNumber: 15
                                     }, this)
                                 ]
-                            }, u.id, true, {
+                            }, u_0.id, true, {
                                 fileName: "[project]/apps/web/src/components/admin/users-admin-table.tsx",
-                                lineNumber: 162,
-                                columnNumber: 26
+                                lineNumber: 160,
+                                columnNumber: 28
                             }, this))
                     }, void 0, false, {
                         fileName: "[project]/apps/web/src/components/admin/users-admin-table.tsx",
-                        lineNumber: 161,
+                        lineNumber: 159,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/apps/web/src/components/admin/users-admin-table.tsx",
-                lineNumber: 149,
+                lineNumber: 147,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1015,17 +1027,17 @@ function UsersAdminTable() {
                 children: "Asignación profesor-alumno disponible para usuarios con rol USER."
             }, void 0, false, {
                 fileName: "[project]/apps/web/src/components/admin/users-admin-table.tsx",
-                lineNumber: 211,
+                lineNumber: 209,
                 columnNumber: 7
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/apps/web/src/components/admin/users-admin-table.tsx",
-        lineNumber: 129,
+        lineNumber: 127,
         columnNumber: 10
     }, this);
 }
-_s(UsersAdminTable, "8nWm4kYEOZCxBUfWpO58D4MIsP4=");
+_s(UsersAdminTable, "efpJIkp2j7uJqz4lwtq6E8yAvNA=");
 _c = UsersAdminTable;
 var _c;
 __turbopack_context__.k.register(_c, "UsersAdminTable");

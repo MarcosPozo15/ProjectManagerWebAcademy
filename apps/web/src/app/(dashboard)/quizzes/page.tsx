@@ -1,9 +1,15 @@
 import Link from "next/link";
+import { redirect } from "next/navigation";
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { prisma } from "@/infrastructure/db/prisma";
+import { getSessionUser } from "@/infrastructure/auth/session";
 
 export default async function QuizzesIndexPage() {
+  const session = await getSessionUser();
+  if (!session) redirect("/login");
+  if (session.role !== "USER") redirect("/dashboard");
+
   const modules = await prisma.module.findMany({
     orderBy: [{ learningPath: { order: "asc" } }, { order: "asc" }],
     select: {

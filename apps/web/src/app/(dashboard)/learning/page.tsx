@@ -3,9 +3,12 @@ import Link from "next/link";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { prisma } from "@/infrastructure/db/prisma";
 import { getSessionUser } from "@/infrastructure/auth/session";
+import { redirect } from "next/navigation";
 
 export default async function LearningIndexPage() {
   const session = await getSessionUser();
+  if (!session) redirect("/login");
+  if (session.role !== "USER") redirect("/dashboard");
   const me = session ? await prisma.user.findUnique({ where: { email: session.email }, select: { id: true } }) : null;
   const completed = me
     ? await prisma.progress.findMany({
